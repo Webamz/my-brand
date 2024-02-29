@@ -1,6 +1,52 @@
 body {
     background-color: #16307E;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
 .intro {
     color: white;
+    text-align: center;
 }
+
+nav {
+    background-color: #16307E;
+    padding: 10px;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between; 
+    flex-direction: row-reverse; 
+    padding: 0 10px; 
+}
+
+li {
+    margin-right: 20px; 
+}
+
+li.brand {
+    margin-right: auto; 
+    font-size: 24px; 
+    font-weight: bold; 
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: transform 0.3s; 
+}
+
+li a:hover {
+    transform: scale(1.1); 
+}
+
