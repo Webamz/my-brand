@@ -16,7 +16,7 @@ nav {
     margin: auto;
     position: sticky;
     top: 0;
-    z-index: 1000; /* Ensures the navbar stays above other content */
+    z-index: 1000; 
 }
 
 ul {
@@ -57,8 +57,8 @@ li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Changed to min-height */
-    background-color: #f0f0f0;
+    min-height: 100vh; 
+    background-color: white;
 }
 
 .about {
@@ -126,8 +126,18 @@ li a:hover {
     color: #2D9F2B;
 }
 
+.login-btn {
+    background-color: #007bff; 
+    border-radius: 5px; 
+    padding: 8px 5px; 
+    font-size: 14px; 
+  }
+  
+  .login-btn:hover {
+    background-color: #2D9F2B; 
+  }
+
 html {
     scroll-behavior: smooth;
-    scroll-behavior: 500ms; /* Adjust the duration as needed */
+    scroll-behavior: 500ms; 
 }
-
