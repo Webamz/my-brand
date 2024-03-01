@@ -78,9 +78,10 @@ li a:hover {
 }
 
 .profile-picture {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 499px;
+    height: 500px;
+    border-radius: 20%;
+    margin: 50px;
     object-fit: cover;
 }
 
