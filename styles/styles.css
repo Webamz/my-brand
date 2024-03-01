@@ -14,6 +14,9 @@ nav {
     background-color: #16307E;
     padding: 10px;
     margin: auto;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures the navbar stays above other content */
 }
 
 ul {
@@ -22,19 +25,19 @@ ul {
     padding: 0;
     overflow: hidden;
     display: flex;
-    justify-content: space-between; 
-    flex-direction: row-reverse; 
-    padding: 0 10px; 
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 0 10px;
 }
 
 li {
-    margin-right: 20px; 
+    margin-right: 20px;
 }
 
 li.brand {
-    margin-right: auto; 
-    font-size: 24px; 
-    font-weight: bold; 
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 li a {
@@ -43,10 +46,87 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    transition: transform 0.3s; 
+    transition: transform 0.3s;
 }
 
 li a:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Changed to min-height */
+    background-color: #f0f0f0;
+}
+
+.about {
+    background-color: #06172B;
+}
+
+.profile-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.introduction {
+    flex: 1;
+    padding: 0 20px;
+    font-family: 'inter';
+}
+
+.introduction h2 {
+    margin-top: 0;
+    color: white;
+    font-size: 75px;
+    font-weight: bolder;
+    font-family: 'sen';
+}
+
+.introduction p {
+    margin-top: 0;
+    color: white;
+    font-size: 30px;
+}
+
+.home {
+    background-color: #16307E;
+}
+
+.skills {
+    background-color: #16307E;
+}
+
+.projects {
+    background-color: #06172B;
+}
+
+.contact {
+    background-color: #06172B;
+}
+
+
+.introduction span {
+    color: #2D9F2B;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-behavior: 500ms; /* Adjust the duration as needed */
 }
 
