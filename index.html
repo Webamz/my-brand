@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>MyBrand</title>
   </head>
 
@@ -11,7 +12,7 @@
     <!--Navbar-->
     <nav>
       <ul>
-        <li class="login-btn"><a href="login.html">Login</a>
+        <li class="login-btn"><a href="login.html">Login</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
@@ -26,12 +27,22 @@
         <h2>Christian</h2>
         <p>And I am a <span>Developer</span></p>
         <p>Feel free to connect with me 😊</p>
+        <div class="links">
+          <a href=""><i class='bx bxl-linkedin'></i></a>
+          <a href=""><i class='bx bxl-github' ></i></a>
+          <a href=""><i class='bx bxl-instagram' ></i></a>
+          <a href=""><i class='bx bx-x'></i></a>
+        </div>
       </div>
-      <img class="profile-picture" src="./img/prof.jpg" alt="Profile Picture" />
+      <img id="profile-picture" src="./img/prof.jpg" alt="Profile Picture" />
     </div>
     <!-- About me Section-->
     <div class="container about" id="about">
-      <h1 style="color: white">About me</h1>
+      
+      <div class="me">
+        <h1 style="color: white">About me</h1>
+      </div>
+      <img id="profile-picture" src="./img/prof.jpg" alt="Profile Picture" />
     </div>
 
     <!-- Skills Section-->

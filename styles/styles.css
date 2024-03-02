@@ -65,19 +65,7 @@ li a:hover {
     background-color: #06172B;
 }
 
-.profile-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    max-width: 800px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-picture {
+.home #profile-picture {
     width: 499px;
     height: 500px;
     border-radius: 20%;
@@ -104,6 +92,35 @@ li a:hover {
     color: white;
     font-size: 30px;
 }
+
+.links {
+    position: absolute;
+    margin-left: 300px;
+    bottom: 40px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    /* border: 2px solid; */
+    border-radius: 50px;
+    font-size: 20px;
+    color: #01EEFF;
+    text-decoration: none;
+    transition: .1s;
+}
+
+.links a:hover {
+    border: 5px solid white;
+}
+
 
 .home {
     background-color: #16307E;
@@ -137,7 +154,28 @@ li a:hover {
     background-color: #2D9F2B; 
   }
 
-html {
+  .about #profile-picture {
+    width: 499px;
+    height: 500px;
+    border-radius: 50%;
+    margin: 10px;
+    object-fit: cover;
+}
+
+.me {
+    /* flex: 1; */
+    margin-top: 10px;
+    padding: 0 20px;
+    width: 50px;
+    background-color: pink;
+}
+
+.about h1 {
+    align-items: center;
+}
+  
+  
+  html {
     scroll-behavior: smooth;
     scroll-behavior: 500ms; 
 }
