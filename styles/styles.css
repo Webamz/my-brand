@@ -186,9 +186,6 @@ li a:hover {
  color: white;
 }
 
-.about h1 {
-    align-items: center;
-}
 
 .about-container {
   /* background-color: yellow; */
@@ -209,18 +206,34 @@ li a:hover {
 
 .about-container p {
   font-size: 20px;
-  text-align: center;
+  text-align: justify;
+}
+
+.about-container h1 {
+  text-align: left;
 }
 
 
 .cv-btn {
-  background-color: #2D9F2B;
-  margin-left: 80%;
-  margin-right: 10%;
+  margin-left: 75%;
+  margin-right: 15%;
   padding: 0px 5px;
   border-radius: 10%;
-  
+  width: 150px;
+  text-align: center;
+}
 
+
+.cv-btn button{
+  background-color: #2D9F2B;
+  border-radius: 10%;
+  width: 150px;
+  font-size: 16px;
+  color: white;
+}
+
+.cv-btn p{
+  font-size: 20px;
 }
 
 
@@ -301,6 +314,15 @@ li a:hover {
   button[type="submit"]:hover {
     background-color: #37e834;
   }
+
+
+/*Skills section*/
+
+
+
+
+
+
  
 
   html {
