@@ -155,47 +155,46 @@ li a:hover {
 
 
 /*About me section*/
-
-
 .about {
   background-color: yellow;
   display: block;
 }
 
-.about-header {
-  margin-left: 50%;
-  width: 150px;
-  background-color: crimson;
-  padding: 10px 20px;
-}
+
 .pitch {
-  margin-left: 50%;
-  margin-top: 100px;
   background-color: #37e834;
   width: 30%;
   font-size: 14px;
+  margin-left: 50px;
 }
 
+
+
 .me {
-    /* flex: 1; */
-    height: 100px;
+    /* height: 100px; */
     margin-left: 50%;
-    padding: 10px 20px;
     width: 150px;
     background-color: pink;
+    display: flex;
+    padding-top: 80px;
 }
 
 .about h1 {
     align-items: center;
 }
-.about #profile-picture {
+.pic #profile-picture {
   width: 499px;
   height: 500px;
   border-radius: 50%;
-  margin-right: 0px;
+  margin-right: 50px;
   object-fit: cover;
 }
 
+.pic {
+  background-color: hotpink;
+  display: flex;
+  justify-content: space-between;
+}
 
 
 
