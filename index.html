@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/styles.css" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>MyBrand</title>
   </head>
 
@@ -28,17 +31,16 @@
         <p>And I am a <span>Developer</span></p>
         <p>Feel free to connect with me 😊</p>
         <div class="links">
-          <a href=""><i class='bx bxl-linkedin'></i></a>
-          <a href=""><i class='bx bxl-github' ></i></a>
-          <a href=""><i class='bx bxl-instagram' ></i></a>
-          <a href=""><i class='bx bx-x'></i></a>
+          <a href=""><i class="bx bxl-linkedin"></i></a>
+          <a href=""><i class="bx bxl-github"></i></a>
+          <a href=""><i class="bx bxl-instagram"></i></a>
+          <a href=""><i class="bx bx-x"></i></a>
         </div>
       </div>
       <img id="profile-picture" src="./img/prof.jpg" alt="Profile Picture" />
     </div>
     <!-- About me Section-->
     <div class="container about" id="about">
-      
       <div class="me">
         <h1 style="color: white">About me</h1>
       </div>
@@ -55,8 +57,58 @@
     </div>
 
     <!--contact section-->
-    <div class="container contact" id="contact">
-      <h2 style="color: white">Contact</h2>
+    <div class="container" id="contact">
+      <div class="contact-page">
+        <div class="contact-header">
+          <h2>Contact <span class="green-text">Me</span></h2>
+        </div>
+        <div class="contact-form">
+          <div class="form-group">
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="First Name"
+              required
+            />
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              placeholder="Last Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="tel"
+              id="mobilenumber"
+              name="mobilenumber"
+              placeholder="Mobile Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your Message"
+              rows="6"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group btn">
+            <button type="submit">Send Message</button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
