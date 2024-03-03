@@ -156,44 +156,71 @@ li a:hover {
 
 /*About me section*/
 .about {
-  background-color: yellow;
+  background-color: #06172B;
   display: block;
 }
 
 
 .pitch {
-  background-color: #37e834;
+  /* background-color: #37e834; */
   width: 30%;
   font-size: 14px;
-  margin-left: 50px;
+  /* margin-left: 10%; */
+  padding-top:20px;
+}
+
+.pitch h1, p {
+  color: white;
 }
 
 
-
-.me {
+.about-header {
     /* height: 100px; */
     margin-left: 50%;
     width: 150px;
-    background-color: pink;
     display: flex;
     padding-top: 80px;
+}
+
+.about-header h1{
+ color: white;
 }
 
 .about h1 {
     align-items: center;
 }
-.pic #profile-picture {
-  width: 499px;
-  height: 500px;
-  border-radius: 50%;
+
+.about-container {
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.about-container #profile-picture {
+  /* width: 300px;
+  height: 300px; */
+  border-radius: 30%;
   margin-right: 50px;
   object-fit: cover;
 }
 
-.pic {
-  background-color: hotpink;
-  display: flex;
-  justify-content: space-between;
+
+
+.about-container p {
+  font-size: 20px;
+  text-align: center;
+}
+
+
+.cv-btn {
+  background-color: #2D9F2B;
+  margin-left: 80%;
+  margin-right: 10%;
+  padding: 0px 5px;
+  border-radius: 10%;
+  
+
 }
 
 
