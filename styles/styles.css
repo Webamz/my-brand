@@ -60,8 +60,6 @@ li a:hover {
     min-height: 100vh; 
 }
 
-
-
 .home #profile-picture {
     width: 499px;
     height: 500px;
@@ -123,7 +121,6 @@ li a:hover {
 .home {
     background-color: #16307E;
 }
-
 
 
 .contact {
@@ -250,9 +247,6 @@ li a:hover {
   
   .contact-page {
     width: 70%;
-    /* align-items: center; */
-    /* justify-items: center; */
-    /* background-color: brown; */
   }
   
   .form-group {
