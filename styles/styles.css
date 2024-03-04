@@ -92,9 +92,10 @@ li a:hover {
 
 .links {
     position: absolute;
-    margin-left: 300px;
+    margin-right: 20px;
     bottom: 40px;
-    width: 500px;
+    width: 100%; 
+    max-width: 500px;
     display: flex;
     justify-content: space-between;
 }
@@ -254,11 +255,6 @@ li a:hover {
     /* background-color: brown; */
   }
   
-  /* .contact-form {
-    width: 100%;
-    max-width: 900px;
-  }
-   */
   .form-group {
     display: flex;
     justify-content: space-between;
@@ -466,4 +462,130 @@ li a:hover {
 html {
     scroll-behavior: smooth;
     scroll-behavior: 500ms; 
+}
+
+
+/*Media queries for responsiveness */
+/*screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .links {
+    position: static; 
+    margin: 20px auto; 
+    width: 90%; 
+}
+
+  .introduction {
+    text-align: center;
+    margin: 0 20px;
+  }
+
+  #profile-picture {
+    width: 80%;
+    height: auto;
+    margin: 20px 0;
+  }
+
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pitch {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  .cv-btn {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .skills-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-card {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .projects-card {
+    width: 90%;
+    margin: 20px 0;
+  }
+
+  .contact-page {
+    width: 90%;
+  }
+}
+
+/*screens smaller than 480px */
+@media screen and (max-width: 480px) {
+  .introduction h2 {
+    font-size: 40px;
+  }
+
+  .introduction p {
+    font-size: 18px;
+  }
+
+  .pitch h1 {
+    font-size: 20px;
+  }
+
+  .pitch p {
+    font-size: 14px;
+  }
+
+  .cv-btn {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+  }
+
+  .skills-card h2 {
+    font-size: 20px;
+  }
+
+  .skills-card li {
+    font-size: 12px;
+  }
+
+  .projects-header h1 {
+    font-size: 20px;
+  }
+
+  .projects-card {
+    width: 100%;
+  }
+
+  .projects-card img {
+    height: 200px;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group textarea {
+    width: 100%;
+  }
+
+  .btn button {
+    width: 100px;
+  }
 }
