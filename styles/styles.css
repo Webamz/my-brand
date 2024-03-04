@@ -357,6 +357,10 @@ li a:hover {
   
 }
 
+.skills-card:hover {
+  border: 3px solid #01EEFF;
+}
+
 .skills-icons {
   height: 50%;
   display: flex;
@@ -459,10 +463,7 @@ li a:hover {
 }
 
 
-
-
-
-  html {
+html {
     scroll-behavior: smooth;
     scroll-behavior: 500ms; 
 }
