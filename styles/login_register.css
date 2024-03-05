@@ -117,3 +117,40 @@ p a:hover {
     text-decoration: underline;
     color: #2D9F2B;
 }
+
+
+/* Media query for screens smaller than 768px */
+@media only screen and (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+    }
+  
+    nav li {
+      margin: 5px 0;
+    }
+  
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .login-form, .signup-form {
+      width: 90%;
+    }
+  }
+  
+  /* Media query for screens smaller than 576px */
+  @media only screen and (max-width: 576px) {
+    h2 {
+      font-size: 20px;
+    }
+  
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    button.login-btn,
+    button.signup-btn {
+      font-size: 14px;
+    }
+  }
+  
