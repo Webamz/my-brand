@@ -459,19 +459,20 @@ html {
 }
 
 
-/*Media queries for responsiveness */
-/*screens smaller than 768px */
+
+/* Media queries for responsiveness */
+/* Screens smaller than 768px */
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .links {
-    position: static; 
-    margin: 20px auto; 
-    width: 90%; 
-}
+    position: static;
+    margin: 20px auto;
+    width: 90%;
+  }
 
   .introduction {
     text-align: center;
@@ -524,7 +525,7 @@ html {
   }
 }
 
-/*screens smaller than 480px */
+/* Screens smaller than 480px */
 @media screen and (max-width: 480px) {
   .introduction h2 {
     font-size: 40px;
