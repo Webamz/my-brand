@@ -92,6 +92,7 @@ td {
 .side-menu li:hover {
     background: white;
     color:  #16307E;
+    cursor: pointer;
 }
 
 .side-menu ul li {
@@ -255,7 +256,6 @@ td {
 
 .container .content .content-2 .new-users:hover {
     transform: translateY(-10px); 
-    /* background: yellowgreen; */
 }
 
 .container .content .content-2 .new-users table td:nth-child(1) img {
