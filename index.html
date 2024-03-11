@@ -20,22 +20,23 @@
   </head>
 
   <body>
-
-
     <!--Navbar-->
     <nav>
-      <ul>
-        <li class="login-btn"><a href="pages/login.html">Login</a></li>
-        <li><a href="pages/blogs.html">Blogs</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#about">About</a></li>
+      <div class="logo">
+        <a href="#home"><h1>MyBrand</h1></a>
+      </div>
+      <div class="openMenu"><i class="fa fa-bars"></i></div>
+      <ul class="mainMenu">
         <li><a href="#home">Home</a></li>
-        <li class="brand"><a href="index.html#home">MyBrand</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="pages/blogs.html">Blogs</a></li>
+        <li class="login-btn"><a href="pages/login.html">Login</a></li>
+        <div class="closeMenu"><i class="fa fa-times"></i></div>
       </ul>
     </nav>
-
 
     <!-- Home Section-->
     <div class="container home" id="home">
@@ -53,7 +54,6 @@
       </div>
       <img id="profile-picture" src="./img/prof.jpg" alt="Profile Picture" />
     </div>
-
 
     <!-- About me Section-->
     <div class="container about" id="about">
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="cv-btn">
-        <button>Download CV</button>
+        <button onclick="downloadCV()">Download CV</button>
       </div>
     </div>
 
@@ -170,13 +170,48 @@
         </div>
         <div class="projects-card">
           <a href="https://github.com/Webamz" target="_blank">
-            <img src="img/project.jpg" alt="Project 3" />
+            <img src="img/project2.jpg" alt="Project 3" />
             <div class="project-details">
               <h2>Project 3</h2>
               <p>Details about Project 3</p>
             </div>
           </a>
         </div>
+        <div class="projects-card">
+          <a href="https://github.com/Webamz" target="_blank">
+            <img src="img/project2.jpg" alt="Project 3" />
+            <div class="project-details">
+              <h2>Project 3</h2>
+              <p>Details about Project 3</p>
+            </div>
+          </a>
+        </div>
+        <div class="projects-card">
+          <a href="https://github.com/Webamz" target="_blank">
+            <img src="img/project3.jpg" alt="Project 3" />
+            <div class="project-details">
+              <h2>Project 3</h2>
+              <p>Details about Project 3</p>
+            </div>
+          </a>
+        </div>
+        <div class="projects-card">
+          <a href="https://github.com/Webamz" target="_blank">
+            <img src="img/project3.jpg" alt="Project 3" />
+            <div class="project-details">
+              <h2>Project 3</h2>
+              <p>Details about Project 3</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="navigation">
+        <button id="prevBtn" class="nav-btn" onclick="prevSlide()">
+          &#10094; Prev
+        </button>
+        <button id="nextBtn" class="nav-btn" onclick="nextSlide()">
+          Next &#10095;
+        </button>
       </div>
     </div>
 
@@ -234,5 +269,8 @@
         </div>
       </div>
     </div>
+
+    <!-- scripts -->
+    <script src="js/script.js"></script>
   </body>
 </html>

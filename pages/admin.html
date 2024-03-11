@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Admin Panel</title>
+  </head>
+
+  <body>
+    <div class="side-menu">
+      <div class="brand-name">
+        <a href="../index.html" ><h1>My-Brand</h1></a>
+      </div>
+      <ul>
+        <li>
+          <i class="fas fa-tachometer-alt"></i>
+          &nbsp; <span>Dashboard</span>
+        </li>
+        <li><i class="fa-solid fa-user"></i>&nbsp;<span>Users</span></li>
+        <li>
+          <i class="fa-solid fa-clipboard-question"></i>&nbsp;<span
+            >Queries</span
+          >
+        </li>
+        <li><i class="fa-solid fa-newspaper"></i>&nbsp;<span>Blogs</span></li>
+        <li>
+          <i class="fa-solid fa-right-to-bracket"></i>&nbsp;<span>Log out</span>
+        </li>
+      </ul>
+    </div>
+    <div class="container">
+      <div class="header">
+        <div class="nav">
+          <div class="search">
+            <input type="text" placeholder="Search.." />
+            <button type="submit"><img src="../img/search.png" alt="" /></button>
+          </div>
+          <div class="user">
+            <img src="../img/notifications.png" alt="" />
+            <div class="img-case">
+              <img src="../img/user.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="cards">
+          <div class="card">
+            <div class="box">
+              <h1>53</h1>
+              <h3>Queries</h3>
+            </div>
+            <div class="icon-case">
+              <i class="fa-solid fa-clipboard-question fa-4x"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div class="box">
+              <h1>53</h1>
+              <h3>Users</h3>
+            </div>
+            <div class="icon-case">
+              <i class="fa-solid fa-user fa-4x"></i>
+            </div>
+          </div>
+          <div class="card">
+            <div class="box">
+              <h1>125</h1>
+              <h3>Blogs</h3>
+            </div>
+            <div class="icon-case">
+              <i class="fa-solid fa-newspaper fa-4x"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content-2">
+          <div class="recent-queries">
+            <div class="title">
+              <h2>Recent Queries</h2>
+              <a href="#" class="btn">View All</a>
+            </div>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Query</th>
+                <th>Option</th>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>I need help with this problem</td>
+                <td><a href="#" class="btn">View</a></td>
+              </tr>
+            </table>
+          </div>
+          <div class="new-users">
+            <div class="title">
+              <h2>New Users</h2>
+              <a href="#" class="btn">View All</a>
+            </div>
+            <table>
+              <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>option</th>
+              </tr>
+              <tr>
+                <td><img src="../img/user.png" alt="" /></td>
+                <td>John  Doe</td>
+                <td><img src="../img/info.png" alt="" /></td>
+              </tr>
+              <tr>
+                <td><img src="../img/user.png" alt="" /></td>
+                <td>John  Doe</td>
+                <td><img src="../img/info.png" alt="" /></td>
+              </tr>
+              <tr>
+                <td><img src="../img/user.png" alt="" /></td>
+                <td>John  Doe</td>
+                <td><img src="../img/info.png" alt="" /></td>
+              </tr>
+              <tr>
+                <td><img src="../img/user.png" alt="" /></td>
+                <td>John Doe</td>
+                <td><img src="../img/info.png" alt="" /></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

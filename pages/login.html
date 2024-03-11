@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/login_register.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/login_register.css" />
     <title>Login - MyBrand</title>
-</head>
-<body class="login-page">
+  </head>
+  <body class="login-page">
     <nav>
-        <ul>
-          <li class="brand"><a href="../index.html#home">MyBrand</a></li>
-        </ul>
-      </nav>
+      <div class="logo">
+        <a href="../index.html#home"><h1>MyBrand</h1></a>
+      </div>
+      <div class="openMenu"><i class="fa fa-bars"></i></div>
+      <ul class="mainMenu">
+        <div class="closeMenu"><i class="fa fa-times"></i></div>
+      </ul>
+    </nav>
+
     <div class="container">
-        <div class="login-form">
-            <h2>Login</h2>
-            <form action="#" method="POST">
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit" class="login-btn">Login</button>
-            </form>
-            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-        </div>
+      <div class="login-form">
+        <h2>Login</h2>
+        <form action="#" method="POST">
+          <input type="text" placeholder="Username" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
     </div>
-</body>
+  </body>
 </html>

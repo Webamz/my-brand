@@ -1,45 +1,57 @@
 nav {
-    background-color: #16307E;
-    padding: 10px;
-    margin: auto;
-    position: sticky;
-    margin-left: 45%;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    background: #16307E;
+    color:white;
     display: flex;
     justify-content: space-between;
-    flex-direction: row-reverse;
-    padding: 0 10px;
-}
-
-li {
-    margin-right: 20px;
-}
-
-li.brand {
-    margin-right: auto;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+  }
+  
+  nav .mainMenu {
+    display: flex;
+    list-style: none;
+  }
+  
+  nav .mainMenu li a {
+    display: inline-block;
+    padding: 15px;
     text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
     transition: transform 0.3s;
-}
-
-li a:hover {
+  }
+  
+  nav .mainMenu li a:hover {
     transform: scale(1.1);
-}
-
+  }
+  
+  nav .openMenu {
+    font-size: 2rem;
+    margin: 20px;
+    display: none;
+    cursor: pointer;
+  }
+  
+  nav .mainMenu .closeMenu {
+    font-size: 2rem;
+    display: none;
+    cursor: pointer;
+  }
+  
+  nav .logo {
+    margin: 6px;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .logo a {
+    text-decoration: none;
+    color: white;
+    padding-top: 20px;
+  }
+  
 
 body.login-page {
     background-color: #16307E;

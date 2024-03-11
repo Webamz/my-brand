@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/blogs.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -10,83 +11,104 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../styles/blogs.css" />
     <title>My Blog</title>
   </head>
   <body>
-    <!--Navbar-->
-    <nav>
-      <ul>
-        <li class="brand"><a href="../index.html#home">MyBrand</a></li>
-      </ul>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../index.html#home"><h1>MyBrand</h1></a>
+      </div>
     </nav>
-    <h2>Welcome to my Blogs😊😊</h2>
 
-    <!--Posts-->
     <div class="container">
-      <div class="post-card">
-        <div class="post">
-          <h2>🤔What is the Andela Leadership Program?🤔</h2>
-          <p>
-            Well Andela is ...😂is also don't know😂. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Sed malesuada velit vel nibh
-            dictum, sed condimentum orci pellentesque. Donec id est et leo
-            tristique rhoncus.
+      <h2>My Blogs</h2>
+      <!--Blog  1-->
+      <div class="blog-post">
+        <div class="blog-post_img">
+          <img src="../img/blog1.jpg" alt="Blog Post Image" />
+        </div>
+        <div class="blog-post_info">
+          <div class="blog-post_date">
+            <span>Christian</span>
+            <span>March 8 2024</span>
+          </div>
+          <h1 class="blog-post_title">Lorem</h1>
+          <p class="blog-post_text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
           </p>
-          <div class="like-button">
-            <button><i class="fas fa-thumbs-up"></i> Like</button>
-            <span>0</span> likes
-          </div>
-          <div class="comment-section">
-            <h3>Comments</h3>
-            <div class="comment">Wooww!!You are great</div>
 
-            <!--new comment-->
-            <form>
-              <input type="text" placeholder="Add a comment" />
-              <button type="submit">Comment</button>
-            </form>
-            <div class="action-buttons">
-              <button class="edit"><i class="fas fa-edit"></i> Edit</button>
-              <button class="delete">
-                <i class="fas fa-trash-alt"></i> Delete
-              </button>
-            </div>
+          <div class="blog-post_icons">
+            <i class="far fa-heart"></i> <span class="likes-count">10</span>
+            <i class="far fa-comment"></i> <span class="comments-count">5</span>
           </div>
+          <a href="blog-details.html" class="blog-post_cta">Read More</a>
         </div>
       </div>
 
-      <div class="post-card">
-        <div class="post">
-          <h2>🤩ALX brings you AiCE Course🤩</h2>
-          <p>
-            Guess what ALX just launched a new course. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit. Sed malesuada velit vel nibh
-            dictum, sed condimentum orci pellentesque. Donec id est et leo
-            tristique rhoncus.
-          </p>
-          <div class="like-button">
-            <button><i class="fas fa-thumbs-up"></i> Like</button>
-            <span>0</span> likes
-          </div>
-          <div class="comment-section">
-            <h3>Comments</h3>
-            <div class="comment">What is AiCE please?</div>
-            <div class="comment">OMG!! Can't wait</div>
-
-            <!--new comment-->
-            <form>
-              <input type="text" placeholder="Add a comment" />
-              <button type="submit">Comment</button>
-            </form>
-            <div class="action-buttons">
-              <button class="edit"><i class="fas fa-edit"></i> Edit</button>
-              <button class="delete">
-                <i class="fas fa-trash-alt"></i> Delete
-              </button>
-            </div>
-          </div>
+      <!--blog 2-->
+      <div class="blog-post">
+        <div class="blog-post_img">
+          <img src="../img/prof.jpg" alt="Blog Post Image" />
         </div>
+        <div class="blog-post_info">
+          <div class="blog-post_date">
+            <span>Christian</span>
+            <span>March 8 2024</span>
+          </div>
+          <h1 class="blog-post_title">Lorem</h1>
+          <p class="blog-post_text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+
+          <div class="blog-post_icons">
+            <i class="far fa-heart"></i> <span class="likes-count">10</span>
+            <i class="far fa-comment"></i> <span class="comments-count">5</span>
+          </div>
+          <a href="#" class="blog-post_cta">Read More</a>
+        </div>
+      </div>
+
+      <!--Blog 3-->
+      <div class="blog-post">
+        <div class="blog-post_img">
+          <img src="../img/prof.jpg" alt="Blog Post Image" />
+        </div>
+        <div class="blog-post_info">
+          <div class="blog-post_date">
+            <span>Christian</span>
+            <span>March 8 2024</span>
+          </div>
+          <h1 class="blog-post_title">Lorem</h1>
+          <p class="blog-post_text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+
+          <div class="blog-post_icons">
+            <i class="far fa-heart"></i> <span class="likes-count">10</span>
+            <i class="far fa-comment"></i> <span class="comments-count">5</span>
+          </div>
+          <a href="#" class="blog-post_cta">Read More</a>
+        </div>
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="newsletter">
+        <h2>Subscribe to Newsletter</h2>
+        <form action="#" method="POST">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
   </body>
