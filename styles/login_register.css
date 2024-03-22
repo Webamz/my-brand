@@ -1,145 +1,160 @@
-nav {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #16307E;
+}
+
+.navbar {
   background: #16307E;
   color: white;
   display: flex;
   justify-content: space-between;
   position: fixed;
-  /* top: 0;
+  top: 0;
   left: 0;
-  right: 0; */
-  z-index: 1000; 
-  }
-  
-  nav .mainMenu {
-    display: flex;
-    list-style: none;
-  }
-  
-  nav .mainMenu li a {
-    display: inline-block;
-    padding: 15px;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    margin-right: 20px;
-    transition: transform 0.3s;
-  }
-  
-  nav .mainMenu li a:hover {
-    transform: scale(1.1);
-  }
-  
-  nav .openMenu {
-    font-size: 2rem;
-    margin: 20px;
-    display: none;
-    cursor: pointer;
-  }
-  
-  nav .mainMenu .closeMenu {
-    font-size: 2rem;
-    display: none;
-    cursor: pointer;
-  }
-  
-  nav .logo {
-    margin: 6px;
-    font-size: 25px;
-    font-weight: bold;
-  }
-  
-  .logo a {
-    text-decoration: none;
-    color: white;
-    padding-top: 20px;
-  }
-  
-
-body.login-page {
-    background-color: #16307E;
-    font-family: Arial, sans-serif;
-    padding-top: 60px;
+  right: 0;
+  padding: 1rem;
+  z-index: 1000;
 }
 
-body.signup-page {
-    background-color: #16307E;
-    font-family: Arial, sans-serif;
-    padding-top: 60px;
-    
+/* .navbar .logo h1 {
+  color: white;
+  text-decoration: none;
+  font-size: 2.8rem;
+} */
+
+.logo h1 {
+  color: white;
+  text-decoration: none;
+  font-size: 2.5rem;
+  margin: 0;
+  padding-left: 10px;
 }
+
+.navbar .mainMenu {
+  display: flex;
+  list-style: none;
+}
+
+.navbar .mainMenu li a {
+  display: inline-block;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  margin-right: 20px;
+  transition: transform 0.3s;
+}
+
+.navbar .mainMenu li a:hover {
+  transform: scale(1.1);
+}
+
+.navbar .openMenu {
+  font-size: 2rem;
+  margin: 20px;
+  display: none;
+  cursor: pointer;
+}
+
+.navbar .mainMenu .closeMenu {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
+}
+
+.navbar .logo {
+  margin: 6px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+  padding-top: 20px;
+}
+
+
 
 .container {
-  position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    max-width: 1000px;
-    height: 100vh;
-    margin-top: -20px;
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-form, .signup-form {
+.login-page,
+.signup-page {
+  background-color: #16307E;
+  font-family: Arial, sans-serif;
+  padding-top: 60px;
+}
+
+.login-form,
+.signup-form {
   background-color: white;
   width: 500px;
-  padding: 30px; 
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    text-align: center;
-    color: #007bff;
+  text-align: center;
+  color: #007bff;
 }
-
-
 
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button.login-btn,
 button.signup-btn {
-    width: 100%;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 button.login-btn:hover,
 button.signup-btn:hover {
-    background-color: #2D9F2B;
+  background-color: #2D9F2B;
 }
 
 p {
-    text-align: center;
-    margin-top: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 p a {
-    color: #16307E;
-    text-decoration: none;
+  color: #16307E;
+  text-decoration: none;
 }
 
 p a:hover {
-    text-decoration: underline;
-    color: #2D9F2B;
+  text-decoration: underline;
+  color: #2D9F2B;
 }
-
 
 .valid-indicator {
   display: inline-block;
@@ -163,40 +178,43 @@ p a:hover {
   color: #888;
 }
 
-
-
 /* Media query for screens smaller than 768px */
 @media only screen and (max-width: 768px) {
-    nav ul {
-      flex-direction: column;
-    }
-  
-    nav li {
-      margin: 5px 0;
-    }
-  
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .login-form, .signup-form {
-      width: 90%;
-    }
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
   }
-  
-  /* Media query for screens smaller than 576px */
-  @media only screen and (max-width: 576px) {
-    h2 {
-      font-size: 20px;
-    }
-  
-    input[type="text"],
-    input[type="password"],
-    input[type="email"],
-    button.login-btn,
-    button.signup-btn {
-      font-size: 14px;
-    }
+
+  .navbar .mainMenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
   }
-  
+
+  .navbar .mainMenu li a {
+    margin: 10px 0;
+  }
+
+  .navbar .openMenu {
+    display: block;
+  }
+}
+
+/* Media query for screens smaller than 576px */
+@media only screen and (max-width: 576px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  button.login-btn,
+  button.signup-btn {
+    font-size: 14px;
+  }
+}

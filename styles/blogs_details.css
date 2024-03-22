@@ -134,6 +134,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+
     .comment-header,
     .comment-actions {
         flex-direction: column;

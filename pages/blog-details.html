@@ -1,104 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Details</title>
-    <link rel="stylesheet" href="../styles/blog-details.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="../styles/blogs_details.css" />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <a href="../pages/blogs.html"><h1>MyBrand</h1></a>
-          </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../styles/blogs_details.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="../pages/blogs.html"><h1>MyBrand</h1></a>
+    </div>
+  </nav>
 
-    <!-- Blog Details Content -->
-    <div class="container">
-      <div class="blog-details">
-        <h2>The Impact of Artificial Intelligence on Healthcare</h2>
-        <div class="blog-post-img">
-          <img src="../img/blog1.jpg" alt="Blog Post Image" />
+  <!-- Blog Details Content -->
+  <div class="container">
+    <div class="blog-details">
+      <h2 id="blog-title"></h2>
+      <div class="blog-post-img">
+        <img src="" alt="Blog Post Image" />
+      </div>
+      <div class="blog-post-info">
+        <div class="blog-post-date">
+          <span id="blog-author"></span>
+          <span id="blog-date"></span>
         </div>
-        <div class="blog-post-info">
-          <div class="blog-post-date">
-            <span>Christian</span>
-            <span>March 8, 2024</span>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet
-            ac ipsum eget lacinia. Pellentesque id enim lacinia, venenatis
-            libero nec, mattis urna. Quisque sit amet urna ac ligula fermentum
-            tincidunt. In hac habitasse platea dictumst. Duis elementum
-            consequat lacus nec hendrerit. Aliquam vel lectus ut lectus luctus
-            volutpat. Ut in velit justo. Donec aliquam arcu ut magna feugiat
-            congue. Phasellus dictum lacus id arcu accumsan malesuada. Sed
-            euismod nunc in tincidunt commodo. Morbi non fringilla libero. Fusce
-            vitae pharetra nisi, sit amet dictum libero. In nec elit lacinia,
-            hendrerit magna at, volutpat urna. Suspendisse malesuada felis eget
-            quam sollicitudin consectetur. Aliquam scelerisque purus arcu, ut
-            sollicitudin quam consectetur et. Morbi non placerat ante. Vivamus
-            at tellus vitae risus ultricies bibendum sit amet vel quam. Duis
-            condimentum, metus nec ultricies eleifend, elit ligula eleifend
-            metus, sit amet malesuada lacus quam a risus. Nullam at felis ac
-            nisi malesuada consectetur. Morbi nec odio vel tellus placerat
-            efficitur. Maecenas vitae nunc nec orci sollicitudin pellentesque.
-            Curabitur ac vehicula libero. Curabitur non felis ut risus interdum
-            auctor nec ac sapien. Aliquam erat volutpat. Ut nec fermentum lacus.
-            Integer finibus tincidunt eros eget feugiat. Integer ac libero vitae
-            felis luctus iaculis nec id elit. Pellentesque habitant morbi
-            tristique senectus et netus et malesuada fames ac turpis egestas.
-            Quisque vitae justo in urna consequat auctor. Phasellus tincidunt,
-            dui nec condimentum convallis, nunc felis aliquet elit, sit amet
-            sollicitudin nunc magna et turpis. Sed ut leo sed odio bibendum
-            scelerisque. Nulla facilisi. Suspendisse volutpat scelerisque
-            sapien, in fermentum ligula bibendum ac. Ut sem
-          </p>
-        </div>
-        <!-- Like Button -->
-        <div class="like-button">
-          <i class="far fa-thumbs-up"></i> <span>Like</span>
-        </div>
-        <!-- Comments Section -->
-        <div class="comments">
-          <i class="far fa-comment"></i> <span>Comments (0)</span>
-        </div>
-        <!-- Comments Section -->
-        <div class="comments-section">
-          <div class="comment">
-            <div class="comment-header">
-              <span class="comment-author">Chris</span>
-              <span class="comment-date">March 10, 2024</span>
-            </div>
-            <div class="comment-body">
-              This is a comment. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
-            </div>
-            <div class="comment-actions">
-              <i class="far fa-thumbs-up"></i> <span>Like</span>
-              <i class="far fa-thumbs-down"></i> <span>Dislike</span>
-            </div>
-          </div>
-          <!-- More comments can be added here -->
-        </div>
-        <!-- Comment Form -->
-        <div class="comment-form">
-          <textarea
-            placeholder="Write your comment here..."
-            rows="4"
-          ></textarea>
-          <button>Post Comment</button>
-        </div>
+        <p id="blog-content"></p>
+      </div>
+      <!-- Like Button -->
+      <div class="like-button">
+        <i class="far fa-thumbs-up"></i> <span class="likes-count"></span>
+      </div>
+      <!-- Comments Section -->
+      <div class="comments">
+        <i class="far fa-comment"></i> <span id="comments-number"></span>
+      </div>
+      <!-- Comments Section -->
+      <div class="comments-section">
+        <!-- Comments will be added here -->
+      </div>
+      <!-- Comment Form -->
+      <div class="comment-form">
+        <textarea id="comment-text" placeholder="Write your comment here..." rows="4"></textarea>
+        <button onclick="postComment()">Post Comment</button>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script src="../js/blog-details.js"></script>
+</body>
 </html>

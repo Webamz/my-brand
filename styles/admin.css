@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -26,14 +26,12 @@ h3 {
     color: #999;
 }
 
-.brand-name h1{
+.brand-name h1 {
     color: white;
 }
 
-
-
 .btn {
-    background:  #16307E;
+    background: #16307e;
     color: white;
     padding: 5px 10px;
     text-align: center;
@@ -41,10 +39,10 @@ h3 {
 }
 
 .btn:hover {
-    color:  #16307E;
+    color: #16307e;
     background: white;
     padding: 3px 8px;
-    border: 2px solid  #16307E;
+    border: 2px solid #16307e;
 }
 
 .title {
@@ -67,7 +65,7 @@ td {
 
 .side-menu {
     position: fixed;
-    background:  #16307E;
+    background: #16307e;
     width: 20vw;
     min-height: 100vh;
     display: flex;
@@ -91,18 +89,17 @@ td {
 
 .side-menu li:hover {
     background: white;
-    color:  #16307E;
+    color: #16307e;
     cursor: pointer;
 }
 
 .side-menu ul li {
-    margin-bottom: 20px; 
-  }
+    margin-bottom: 20px;
+}
 
-  .side-menu ul li:last-child {
-    margin-top: 60px; 
-  }
-
+.side-menu ul li:last-child {
+    margin-top: 60px;
+}
 
 .container {
     position: absolute;
@@ -138,7 +135,7 @@ td {
     justify-content: center;
 }
 
-.container .header .nav .search input[type=text] {
+.container .header .nav .search input[type="text"] {
     border: none;
     background: #f1f1f1;
     padding: 10px;
@@ -214,7 +211,7 @@ td {
 }
 
 .container .content .cards .card:hover {
-    transform: translateY(-5px);  
+    transform: translateY(-5px);
 }
 
 .container .content .content-2 {
@@ -238,7 +235,7 @@ td {
 }
 
 .container .content .content-2 .recent-queries:hover {
-    transform: translateY(-15px); 
+    transform: translateY(-15px);
 }
 
 .container .content .content-2 .new-users {
@@ -253,9 +250,13 @@ td {
     transition: 0.2s;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 .container .content .content-2 .new-users:hover {
-    transform: translateY(-10px); 
+    transform: translateY(-10px);
 }
 
 .container .content .content-2 .new-users table td:nth-child(1) img {
@@ -273,31 +274,37 @@ td {
     .side-menu li span {
         display: none;
     }
+
     .side-menu {
         align-items: center;
     }
+
     .side-menu li img {
         width: 40px;
         height: 40px;
     }
+
     .side-menu li:hover {
-        background:  #16307E;
+        background: #16307e;
         padding: 8px 38px;
         border: 2px solid white;
     }
 }
 
-@media screen and (max-width:536px) {
+@media screen and (max-width: 536px) {
     .brand-name h1 {
         font-size: 16px;
     }
+
     .container .content .cards {
         justify-content: center;
     }
+
     .side-menu li img {
         width: 30px;
         height: 30px;
     }
+
     .container .content .content-2 .recent-queries table th:nth-child(2),
     .container .content .content-2 .recent-queries table td:nth-child(2) {
         display: none;
