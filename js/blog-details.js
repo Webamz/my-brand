@@ -80,12 +80,25 @@ function updateComments() {
 }
 
 // Function to get blog details
-function getBlogDetails(blogId) {
-  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-
-  const blog = blogs.find((blog) => blog.id === parseInt(blogId));
-
-  return blog;
+async function getBlogDetails(blogId) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/blogs/find/${blogId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch blog details');
+    }
+    const blog = await response.json();
+    document.getElementById('blog-title').textContent = blog.title;
+    document.querySelector('.blog-post-img img').src = blog.image;
+    document.getElementById('blog-author').textContent = blog.author;
+    document.getElementById('blog-date').textContent = new Date(blog.createdAt).toLocaleDateString();
+    document.getElementById('blog-content').textContent = blog.content;
+    document.querySelector('.likes-count').textContent = blog.likeNumber;
+    document.getElementById('comments-number').textContent = blog.commentsNumber;
+    
+  } catch (error) {
+    console.error('Error fetching blog details:', error.message);
+    return null;
+  }
 }
 
 // Function to update blog details in the DOM

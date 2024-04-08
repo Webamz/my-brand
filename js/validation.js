@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
   passwordInput.addEventListener('input', validatePassword);
   confirmPasswordInput.addEventListener('input', validateConfirmPassword);
 
-  signupForm.addEventListener('submit', function (event) {
+  signupForm.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const username = usernameInput.value;
@@ -39,22 +39,30 @@ document.addEventListener('DOMContentLoaded', function () {
       validateConfirmPassword()
     ) {
 
-      const hashedPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+      try {
+        const response = await fetch('http//localhost:3000/api/users/register', {
+          method: 'POST',
+          headers: {
+                    'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+             "name": username,
+            "email": email,
+            "password": confirmPassword,
+            "role": "user"
+          })
+        })
+        console.log(response)
 
-      // Create user object
-      const newUser = {
-        username: username,
-        email: email,
-        password: hashedPassword
-      };
+        if (response.ok) {
+           alert('Registration successful!');
+        }
+        window.location.href = 'login.html';
 
-      let users = JSON.parse(localStorage.getItem('users')) || [];
+      } catch (error) {
+        console.error(error)
+      }
 
-      users.push(newUser);
-
-      localStorage.setItem('users', JSON.stringify(users));
-
-      window.location.href = 'login.html';
     } else {
       alert('Please fill in the form correctly.');
     }
