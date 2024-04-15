@@ -1,52 +1,55 @@
 document.addEventListener("DOMContentLoaded", function () {
   loadBlogs();
 });
+async function loadBlogs() {
+  const blogContainer = document.getElementById("blogContainer");
 
-function loadBlogs() {
-  const blogContainer = document.getElementById('blogContainer');
+  try {
+    const response = await fetch("http://localhost:3000/api/blogs");
+    if (!response.ok) {
+      throw new Error("Failed to fetch blogs");
+    }
 
-  const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+    const blogs = await response.json();
+    blogs.forEach(async function (blog) {
+      const responseLikes = await fetch(
+        `http://localhost:3000/api/like/get/${blog._id}`
+      );
+      const responseComments = await fetch(
+        `http://localhost:3000/api/blogs/${blog._id}/comments`
+      );
 
-  blogs.forEach(function (blog) {
-    const blogPost = document.createElement('div');
-    blogPost.classList.add('blog-post');
+      const likes = await responseLikes.json();
+      const comments = await responseComments.json();
 
-    blogPost.innerHTML = `
-      <div class="blog-post_img">
-        <img src="${blog.image}" alt="Blog Post Image" />
-      </div>
-      <div class="blog-post_info">
-        <div class="blog-post_date">
-          <span>${blog.author}</span>
-          <span>${blog.timecreated}</span>
+      const blogPost = document.createElement("div");
+      blogPost.classList.add("blog-post");
+
+      blogPost.innerHTML = `
+        <div class="blog-post_img">
+          <img src="${blog.image}" alt="Blog Post Image" />
         </div>
-        <h1 class="blog-post_title">${blog.title}</h1>
-        <p class="blog-post_text">${blog.description}</p>
-        <div class="blog-post_icons">
-          <i class="far fa-heart like-button"></i> <span class="likes-count">${blog.likeNumber}</span>
-          <i class="far fa-comment"></i> <span class="comments-count">${blog.commentsNumber}</span>
+        <div class="blog-post_info">
+          <div class="blog-post_date">
+            <span>${new Date(blog.createdAt).toLocaleDateString()}</span>
+          </div>
+          <h1 class="blog-post_title">${blog.title}</h1>
+          <p class="blog-post_text">${blog.description}</p>
+          <div class="blog-post_icons">
+             <i class="far fa-heart like-button"></i> <span class="likes-count">${likes.length
+        }</span>
+          <i class="far fa-comment"></i> <span class="comments-count">${comments.length
+        }</span>
+        </div>            
+          </div>
+          <a href="blog-details.html?id=${blog._id
+        }" class="blog-post_cta">Read More</a>
         </div>
-        <a href="blog-details.html?id=${blog.id}" class="blog-post_cta">Read More</a>
-      </div>
-    `;
+      `;
 
-    const likeButton = blogPost.querySelector('.like-button');
-    likeButton.addEventListener('click', function () {
-      blog.likeNumber++;
-      const likesCount = blogPost.querySelector('.likes-count');
-      likesCount.textContent = blog.likeNumber;
-      updateLocalStorage(blog);
+      blogContainer.appendChild(blogPost);
     });
-
-    blogContainer.appendChild(blogPost);
-  });
-}
-
-function updateLocalStorage(blog) {
-  const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
-  const index = blogs.findIndex((b) => b.id === blog.id);
-  if (index !== -1) {
-    blogs[index] = blog;
-    localStorage.setItem('blogs', JSON.stringify(blogs));
+  } catch (error) {
+    console.error("Error fetching blogs:", error.message);
   }
 }

@@ -1,27 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
     const loginForm = document.getElementById('loginForm');
 
-    loginForm.addEventListener('submit', function (event) {
+    loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        // Get user input values
-        const username = document.getElementById('username').value;
+        const email = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+        try {
+            const response = await fetch('http://localhost:3000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Data: ', data);
 
-        const user = users.find(user => user.username === username);
 
-        // If user is found and password matches
-        if (user && CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex) === user.password) {
-            alert('Login successful!');
-            if (username === 'admin') {
-                window.location.href = '../pages/admin.html';
+                alert('Login successful!');
+
+                document.cookie = `token=${data.token}; path=/; SameSite=None; Secure;`;
+
+                if (data.role === 'admin') {
+                    window.location.href = '../pages/admin.html';
+                } else {
+                    window.location.href = '../index.html';
+                }
             } else {
-                window.location.href = 'index.html';
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Login failed');
             }
-        } else {
-            alert('Invalid username or password');
+        } catch (error) {
+            console.error('Login error:', error.message);
+            alert(error.message);
         }
     });
 });

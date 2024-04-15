@@ -157,11 +157,11 @@ h2 {
     color: #fff;
 }
 
-.blog-post_icons i.fa-heart:hover {
+.blog-post_icons i.fa-heart {
     color: red;
 }
 
-.blog-post_icons i.fa-comment:hover {
+.blog-post_icons i.fa-comment {
     color: #2D9F2B;
 }
 

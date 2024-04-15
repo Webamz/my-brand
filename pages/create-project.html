@@ -11,7 +11,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Create Blog</title>
+    <title>Create Project</title>
   </head>
   <body>
     <nav class="navbar">
@@ -24,14 +24,14 @@
         <h1>Create Blog</h1>
       </div>
       <div class="content">
-        <form id="blogForm">
+        <form id="projectForm">
           <div>
-            <label for="title">Title:</label>
+            <label for="projectname">Project Name:</label>
             <input
               type="text"
-              id="title"
-              name="title"
-              placeholder="Title of the post"
+              id="projectname"
+              name="projectName"
+              placeholder="Name of project"
               required
             />
           </div>
@@ -41,19 +41,19 @@
               id="description"
               name="description"
               rows="3"
-              placeholder="Description of the post"
+              placeholder="Description of the project"
               required
             ></textarea>
           </div>
           <div>
-            <label for="content">Content:</label>
-            <textarea
-              id="content"
-              name="content"
-              rows="6"
-              placeholder="Content of the post"
+            <label for="guthublink">Github Link:</label>
+            <input
+              type="text"
+              id="githublink"
+              name="githublink"
+              placeholder="Link of the project"
               required
-            ></textarea>
+            />
           </div>
           <div>
             <label for="image">Image:</label>
@@ -61,14 +61,14 @@
               type="file"
               id="image"
               name="image"
-              placeholder="Enter image URL"
+              placeholder="Enter image"
             />
           </div>
-          <button type="submit">Create Blog</button>
+          <button type="submit">Create Project</button>
         </form>
       </div>
     </div>
 
-    <script src="../js/create-blog.js"></script>
+    <script src="../js/create-project.js"></script>
   </body>
 </html>

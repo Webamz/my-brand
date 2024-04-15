@@ -1,77 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Query Details</title>
-    <link rel="stylesheet" href="../styles/query-details.css">
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="logo">
-        <a href="../pages/admin-queries.html"><h1>MyBrand</h1></a>
-      </div>
-    </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Querry</title>
+  <link rel="stylesheet" href="../styles/blog-actions.css">
+</head>
+<body>
+  
+   <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="../pages/admin-queries.html"><h1>MyBrand</h1></a>
+    </div>
+  </nav>
 
-    <!-- Query Details-->
-    <div class="container">
-      <div class="query-details">
-        <h2>Query Details</h2>
-        <div class="details">
-          <div class="detail">
-            <label for="firstName">First Name:</label>
-            <p id="firstName"></p>
-          </div>
-          <div class="detail">
-            <label for="lastName">Last Name:</label>
-            <p id="lastName"></p>
-          </div>
-          <div class="detail">
-            <label for="email">Email:</label>
-            <p id="email"></p>
-          </div>
-          <div class="detail">
-            <label for="mobileNumber">Mobile Number:</label>
-            <p id="mobileNumber"></p>
-          </div>
-          <div class="detail">
-            <label for="message">Message:</label>
-            <p id="message"></p>
-          </div>
-          <div class="detail">
-            <label for="dateTime">Date & Time:</label>
-            <p id="dateTime"></p>
-          </div>
-        </div>
+
+  <div class="container">
+    <div class="form">
+      <h2>Edit Querry</h2>
+      <div class="form-group">
+        <label for="name">FirstName</label>
+        <input type="text" id="name" readonly>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" readonly>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" readonly></textarea>
+      </div>
+      <div class="form-group">
+        <label for="review">Review</label>
+        <input type="text" id="review">
+      </div>
+      <div class="btn-group">
+        <button class="btn update-btn" id="updateBtn">Update</button>
+        <button class="btn delete-btn" id="deleteBtn">Delete</button>
       </div>
     </div>
+  </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Get query ID from URL
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const queryId = urlParams.get("id");
-
-        // Retrieve queries from local storage or database
-        const queries = JSON.parse(localStorage.getItem("queries")) || [];
-
-        // Find query by ID
-        const query = queries.find((query) => query.id === parseInt(queryId));
-
-        if (query) {
-          document.getElementById("firstName").textContent = query.firstname;
-          document.getElementById("lastName").textContent = query.lastname;
-          document.getElementById("email").textContent = query.email;
-          document.getElementById("mobileNumber").textContent = query.mobilenumber;
-          document.getElementById("message").textContent = query.message;
-          document.getElementById("dateTime").textContent = query.timestamp;
-        } else {
-          const container = document.querySelector(".container");
-          container.innerHTML = "<h2>Query not found.</h2>";
-        }
-      });
-    </script>
-  </body>
+  <script src="../js/querry-actions.js"></script>
+</body>
 </html>

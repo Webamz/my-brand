@@ -89,12 +89,17 @@ body {
 }
 
 .comment-author {
-    font-weight: bold;
+    font-style: italic;
+}
+
+.comment-date {
+    font-style: italic;
 }
 
 .comment-body {
     color: #333;
     margin-bottom: 10px;
+        font-weight: bold;
 }
 
 .comment-actions {

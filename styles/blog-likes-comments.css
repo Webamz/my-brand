@@ -29,18 +29,17 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
+    margin-left: 20%;
 }
 
-.side-panel {
-    padding-top: 45px;
+.side-panel-comments {
     width: 60%;
+    justify-content: center;
 }
 
-.side-panel img {
-    width: 50%;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+.side-panel-likes {
+    width: 60%;
+    justify-content: center;
 }
 
 .comments {
@@ -49,43 +48,9 @@ body {
 }
 
 .comments h3 {
-    margin-bottom: 10px;
+    margin-bottom: 100px;
 }
 
-.form {
-    width: 60%;
-    padding-right: 50px;
-}
-
-.form h2 {
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input[type="text"],
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-.btn-group {
-    margin-top: 20px;
-}
 
 .btn {
     padding: 10px 20px;
@@ -104,6 +69,7 @@ body {
 .delete-btn {
     background-color: #dc3545;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 .btn:hover {

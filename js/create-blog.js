@@ -1,44 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
-  createBlog();
 });
 
+const createBlog = async (formData) => {
+  try {
+    const response = await fetch('http://localhost:3000/api/blogs/create', {
+      method: 'POST',
+      body: formData,
+      credentials: 'include'
+    });
 
-// Function to create blog
-function createBlog() {
-  const blogForm = document.getElementById('blogForm');
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log('Blog created successfully:', responseData);
+      return responseData;
+    } else {
+      throw new Error('Failed to create blog');
+    }
+  } catch (error) {
+    console.error('Error creating blog:', error);
+    throw error;
+  }
+};
 
-  blogForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+const blogForm = document.getElementById('blogForm');
 
-    const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
-    const content = document.getElementById('content').value;
-    const author = document.getElementById('author').value;
-    const image = document.getElementById('image').value;
-    const timecreated = new Date().toLocaleString();
-    const commentsNumber = 0;
-    const likeNumber = 0;
+blogForm.addEventListener('submit', async function (event) {
+  event.preventDefault();
 
-    let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+  const formData = new FormData();
+  formData.append('title', document.getElementById('title').value);
+  formData.append('description', document.getElementById('description').value);
+  formData.append('content', document.getElementById('content').value);
+  formData.append('image', document.getElementById('image').files[0]);
 
-    // Create blog object
-    const blog = {
-      id: blogs.length + 1,
-      title: title,
-      description: description,
-      content: content,
-      author: author,
-      image: image,
-      timecreated: timecreated,
-      commentsNumber: commentsNumber,
-      likeNumber: likeNumber
-    };
-
-    blogs.push(blog);
-    localStorage.setItem('blogs', JSON.stringify(blogs));
-
+  try {
+    await createBlog(formData);
+    alert('Blog created successfully!');
     blogForm.reset();
-  });
-}
-
-
+  } catch (error) {
+    alert('Failed to create blog. Please try again.');
+    console.error('Error creating blog:', error);
+  }
+});

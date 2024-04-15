@@ -1,95 +1,90 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
+  // const commentBox = document.getElementById("comment-box");
+  // commentBox.style.display = "none";
   const urlParams = new URLSearchParams(window.location.search);
   const blogId = urlParams.get("id");
 
   // Get blog details
   const blog = getBlogDetails(blogId);
 
-  // Update blog details
-  updateBlogDetails(blog);
+  displayComments()
 
-  // Update comments section
-  updateComments();
+  toggleCommentBox()
+
+  loadLikes()
+
 });
 
 // Function to post comments
-function postComment() {
-  const commentText = document.getElementById("comment-text").value;
+async function postComment() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = urlParams.get("id");
+    console.log("BlogId: ", blogId);
+    const commentText = document.getElementById("comment-text").value.toLowerCase();
+    let userText = document.getElementById('comment-username').value
+    userText = userText.charAt(0).toUpperCase() + userText.slice(1).toLowerCase();
 
-  const newComment = {
-    author: "User",
-    date: new Date().toLocaleDateString(),
-    text: commentText,
-    blogId: parseInt(new URLSearchParams(window.location.search).get("id")),
-  };
-
-  let existingComments = JSON.parse(localStorage.getItem("blogComments")) || [];
-
-  existingComments.push(newComment);
-
-  localStorage.setItem("blogComments", JSON.stringify(existingComments));
-
-  updateComments();
-
-  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-  let blogIndex = blogs.findIndex((blog) => blog.id === newComment.blogId);
-  if (blogIndex !== -1) {
-    blogs[blogIndex].commentsNumber = (blogs[blogIndex].commentsNumber || 0) + 1;
-    localStorage.setItem("blogs", JSON.stringify(blogs));
+    console.log("Comment: ", commentText);
+    const response = await fetch(
+      `http://localhost:3000/api/blogs/${blogId}/comments/create`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          blogId: blogId,
+          message: commentText,
+          username: userText
+        }),
+      }
+    );
+    if (response.ok) {
+      alert('Comment posted successfully')
+      toggleCommentBox()
+      displayComments()
+    } else {
+      throw new Error('Failed to post comment');
+    }
+  } catch (error) {
+    console.error("Error creating blog:", error);
+    throw error;
   }
 
   document.getElementById("comment-text").value = "";
 }
 
-// Function to update comments
-function updateComments() {
-  const commentsSection = document.querySelector(".comments-section");
-
-  const comments = JSON.parse(localStorage.getItem("blogComments")) || [];
-
-  commentsSection.innerHTML = "";
-
-  const blogId = parseInt(new URLSearchParams(window.location.search).get("id"));
-  const blogComments = comments.filter((comment) => comment.blogId === blogId);
-
-  blogComments.forEach(function (comment) {
-    const commentDiv = document.createElement("div");
-    commentDiv.classList.add("comment");
-
-    const commentHeader = document.createElement("div");
-    commentHeader.classList.add("comment-header");
-    commentHeader.innerHTML =
-      '<span class="comment-author">' +
-      comment.author +
-      "</span>" +
-      '<span class="comment-date">' +
-      comment.date +
-      "</span>";
-
-    const commentBody = document.createElement("div");
-    commentBody.classList.add("comment-body");
-    commentBody.textContent = comment.text;
-
-    commentDiv.appendChild(commentHeader);
-    commentDiv.appendChild(commentBody);
-    commentsSection.appendChild(commentDiv);
-  });
-
-  const commentCountElement = document.getElementById("comments-number");
-  commentCountElement.textContent = "Comments (" + blogComments.length + ")";
-}
 
 // Function to get blog details
-function getBlogDetails(blogId) {
-  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-
-  const blog = blogs.find((blog) => blog.id === parseInt(blogId));
-
-  return blog;
+async function getBlogDetails(blogId) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/blogs/find/${blogId}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch blog details");
+    }
+    const blog = await response.json();
+    document.getElementById("blog-title").textContent = blog.title;
+    document.querySelector(".blog-post-img img").src = blog.image;
+    document.getElementById("blog-author").textContent = blog.author;
+    document.getElementById("blog-date").textContent = new Date(
+      blog.createdAt
+    ).toLocaleDateString();
+    document.getElementById("blog-content").textContent = blog.content;
+    document.querySelector(".likes-count").textContent = blog.likeNumber;
+    document.getElementById("comments-number").textContent =
+      blog.commentsNumber;
+  } catch (error) {
+    console.error("Error fetching blog details:", error.message);
+    return null;
+  }
 }
 
 // Function to update blog details in the DOM
-function updateBlogDetails(blog) {
+async function updateBlogDetails(blog) {
   if (blog) {
     document.getElementById("blog-title").textContent = blog.title;
     document.getElementById("blog-author").textContent = blog.author;
@@ -99,32 +94,110 @@ function updateBlogDetails(blog) {
     const blogImage = document.querySelector(".blog-post-img img");
     blogImage.src = blog.image;
     blogImage.alt = "Blog Post Image";
-
-    const likeButton = document.querySelector(".like-button");
-    const likeCount = document.querySelector(".likes-count");
-    let liked = false;
-
-    likeButton.addEventListener("click", function () {
-      liked = !liked;
-      if (liked) {
-        blog.likeNumber++;
-      } else {
-        blog.likeNumber--;
-      }
-      likeCount.textContent = blog.likeNumber;
-      updateLocalStorage(blog);
-    });
-
-    likeCount.textContent = blog.likeNumber;
   }
 }
 
-// Function to update localStorage
-function updateLocalStorage(blog) {
-  const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-  const index = blogs.findIndex((b) => b.id === blog.id);
-  if (index !== -1) {
-    blogs[index] = blog;
-    localStorage.setItem("blogs", JSON.stringify(blogs));
+
+async function displayComments() {
+  const blogId = new URLSearchParams(window.location.search).get("id");
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/blogs/${blogId}/comments`);
+    const comments = await response.json();
+
+    const commentsSection = document.querySelector(".comments-section");
+    commentsSection.innerHTML = "";
+
+    const commentCount = document.getElementById("comments-number");
+    commentCount.textContent = "Comments (" + comments.length + ")";
+
+    comments.forEach(comment => {
+      const commentDiv = document.createElement("div");
+      commentDiv.classList.add("comment");
+
+      const commentHeader = document.createElement("div");
+      commentHeader.classList.add("comment-header");
+      commentHeader.innerHTML =
+        '<span class="comment-date">' +
+        new Date(comment.createdAt).toLocaleDateString()
+        + '    '
+        +
+        '<span class="comment-author">' +
+        comment.username
+        +
+        "</span>";
+
+      const commentBody = document.createElement("div");
+      commentBody.classList.add("comment-body");
+      commentBody.textContent = comment.message;
+
+      commentDiv.appendChild(commentHeader);
+      commentDiv.appendChild(commentBody);
+      commentsSection.appendChild(commentDiv);
+    });
+
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+  }
+}
+
+
+function toggleCommentBox() {
+  const commentBox = document.getElementById("comment-box");
+  const addCommentBtn = document.getElementById("add-comment-btn");
+
+  if (commentBox.style.display === "none") {
+    commentBox.style.display = "block";
+    addCommentBtn.textContent = "Cancel";
+  } else {
+    commentBox.style.display = "none";
+    addCommentBtn.textContent = "Add Comment";
+  }
+}
+
+
+async function likeBlog() {
+  const blogId = new URLSearchParams(window.location.search).get("id");
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/like/create`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          blogId: blogId,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      loadLikes()
+    } else {
+      console.error("Failed to like blog");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+async function loadLikes() {
+  const blogId = new URLSearchParams(window.location.search).get("id");
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/like/get/${blogId}`);
+    const likes = await response.json()
+    if (response.ok) {
+      const likesCount = document.getElementById("likes-count");
+    likesCount.textContent = "Likes (" + likes.length + ")";
+    } else {
+      console.error("Failed to get likes: ", error);
+    }
+  } catch (error) {
+    console.error(error);
   }
 }

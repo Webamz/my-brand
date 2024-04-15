@@ -1,103 +1,123 @@
 document.addEventListener('DOMContentLoaded', function () {
-  function displayBlogDetails() {
+  
+  async function displayBlogDetails() {
     const urlParams = new URLSearchParams(window.location.search);
-    const blogId = parseInt(urlParams.get('id'));
+    const blogId = urlParams.get('id')
 
-    const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+  try {
+    const response = await fetch(`http://localhost:3000/api/blogs/find/${blogId}`);
+    const commentsResponse = await fetch(`http://localhost:3000/api/blogs/${blogId}/comments`)
+    const likesResponse = await fetch(`http://localhost:3000/api/like/get/${blogId}`)
 
-    const blog = blogs.find(blog => blog.id === blogId);
-
-    if (!blog) {
-      alert('Blog not found!');
-      return;
+    
+    if (!response.ok && !commentsResponse.ok && !likesResponse) {
+      throw new Error('Failed to fetch blog details')
     }
-
-    const blogComments = JSON.parse(localStorage.getItem('blogComments')) || [];
-    const commentsForBlog = blogComments.filter(comment => comment.blogId === blogId);
-
-    const blogImage = document.querySelector('.blog-image');
-    blogImage.src = blog.image;
-
-    const commentsContainer = document.querySelector('.comments');
-    commentsContainer.innerHTML = '<h3>Comments</h3>';
-    commentsForBlog.forEach(comment => {
-      const commentDiv = document.createElement('div');
-      commentDiv.classList.add('comment');
-      commentDiv.textContent = comment.text;
-      commentsContainer.appendChild(commentDiv);
-    });
+    const comments = await commentsResponse.json()
+    const likes = await likesResponse.json()
+    const blog = await response.json();
+    
+    console.log('The bog: ', blog)
 
     document.getElementById('title').value = blog.title;
-    document.getElementById('author').value = blog.author;
-    document.getElementById('content').value = blog.content;
-    document.getElementById('image').value = blog.image;
+    document.getElementById('description').value = blog.description;
+    document.getElementById('content').textContent = blog.content;
+    document.getElementById('imagePreview').src = blog.image;
+
+    document.getElementById('comments').textContent = comments.length
+    document.getElementById('likes').textContent = likes.length
+
+
+
+    const viewComments = document.getElementById('commentsBtn')
+    const viewLikes = document.getElementById('likesBtn')
+    
+    viewComments.addEventListener('click', () => {
+        window.location.href = `blog-likes-comments.html?id=${blogId}`;    
+    })
+
+    viewLikes.addEventListener('click', () => {
+        window.location.href = `blog-likes-comments.html?id=${blogId}`;    
+    })
+
+
+
+  } catch (error) {
+    console.error('Error fetching blog details:', error.message);
+    return null;
   }
+    
+}
 
   // Function to update blog details
-  function updateBlogDetails(updatedTitle, updatedAuthor, updatedContent, updatedImage) {
+  async function updateBlogDetails() {
+    const confirmed = confirm('Are you sure you want to update this blog?');
     const urlParams = new URLSearchParams(window.location.search);
-    const blogId = parseInt(urlParams.get('id'));
+    const blogId = urlParams.get('id');
 
-    let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+    const formData = new FormData();
+    formData.append('title', document.getElementById('title').value);
+    formData.append('description', document.getElementById('description').value);
+    formData.append('content', document.getElementById('content').value);
+    formData.append('image', document.getElementById('image').files[0]);
+    
+    if (confirmed) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/blogs/update/${blogId}`, {
+          method: 'PUT',
+          body: formData,
+          credentials: 'include'
+        })
+    
 
-    const index = blogs.findIndex(blog => blog.id === blogId);
-
-    // Update the blog details
-    if (index !== -1) {
-      blogs[index].title = updatedTitle;
-      blogs[index].author = updatedAuthor;
-      blogs[index].content = updatedContent;
-      blogs[index].image = updatedImage;
-
-      localStorage.setItem('blogs', JSON.stringify(blogs));
-
-      alert('Blog details updated successfully!');
-    } else {
-      alert('Blog not found!');
+        if (response.ok) {
+          const responseData = await response.json();
+          alert('Blog updated successfully')
+          console.log('Blog updated successfully:', responseData);
+          return responseData;
+      
+        } else {
+          throw new Error('Failed to update blog');
+        }
+      } catch (error) {
+        console.error('Error creating blog:', error);
+        throw error;
+      }
     }
   }
 
   // Function to delete a blog
-  function deleteBlog() {
-    const confirmed = confirm('Are you sure you want to delete this blog?');
+ async function deleteBlog() {
+  const confirmed = confirm('Are you sure you want to delete this blog?');
 
-    if (confirmed) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const blogId = parseInt(urlParams.get('id'));
+  if (confirmed) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const blogId = urlParams.get('id');
 
-      let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+    try {
+      const response = await fetch(`http://localhost:3000/api/blogs/delete/${blogId}`, {
+        method: 'DELETE',
+        credentials: 'include'
+        
+      });
 
-      blogs = blogs.filter(blog => blog.id !== blogId);
-
-      localStorage.setItem('blogs', JSON.stringify(blogs));
+      if (!response.ok) {
+        throw new Error('Failed to delete blog');
+      }
 
       alert('Blog deleted successfully!');
 
-      // Delete associated comments
-      deleteCommentsForBlog(blogId);
-
       window.location.href = '../pages/admin-blogs.html';
+    } catch (error) {
+      console.error('Error deleting blog:', error.message);
     }
   }
-
-  // Function to delete comments associated with a blog
-  function deleteCommentsForBlog(blogId) {
-    let blogComments = JSON.parse(localStorage.getItem('blogComments')) || [];
-
-    blogComments = blogComments.filter(comment => comment.blogId !== blogId);
-
-    localStorage.setItem('blogComments', JSON.stringify(blogComments));
-  }
+}
 
   const updateBtn = document.getElementById('updateBtn');
   updateBtn.addEventListener('click', function () {
-    const updatedTitle = document.getElementById('title').value;
-    const updatedAuthor = document.getElementById('author').value;
-    const updatedContent = document.getElementById('content').value;
-    const updatedImage = document.getElementById('image').value;
-
     // Update blog details
-    updateBlogDetails(updatedTitle, updatedAuthor, updatedContent, updatedImage);
+    updateBlogDetails();
   });
 
   const deleteBlogBtn = document.getElementById('deleteBlogBtn');

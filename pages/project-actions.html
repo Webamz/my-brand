@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit/Delete Blog Post</title>
+  <title>Edit/Delete Project</title>
   <link rel="stylesheet" href="../styles/blog-actions.css">
 </head>
 <body>
@@ -18,16 +18,10 @@
 
   <div class="container">
     <div class="side-panel">
-      <img src="" alt="Blog Image" class="blog-image" id="imagePreview">
-      <div class="comments">
-        <h3>Comments</h3><span id="comments"></span> 
-        <button class="btn update-btn" id="commentsBtn">View</button>
-        <h3>Likes</h3><span id="likes"></span> 
-        <button class="btn update-btn" id="likesBtn">View</button>
-      </div>
+      <img src="" alt="Project Image" class="blog-image" id="imagePreview">
     </div>
     <div class="form">
-      <h2>Edit/Delete Blog Post</h2>
+      <h2>Edit/Delete Project</h2>
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" id="title">
@@ -37,8 +31,8 @@
         <input type="text" id="description" rows="4">
       </div>
       <div class="form-group">
-        <label for="content">Content</label>
-        <textarea id="content" rows="6"></textarea>
+        <label for="github">Github Link</label>
+        <input type="text" id="github" >
       </div>
       <div class="form-group">
         <label for="image">Update Image</label>
@@ -46,11 +40,11 @@
       </div>
       <div class="btn-group">
         <button class="btn update-btn" id="updateBtn">Update</button>
-        <button class="btn delete-btn" id="deleteBlogBtn">Delete</button>
+        <button class="btn delete-btn" id="deleteBtn">Delete</button>
       </div>
     </div>
   </div>
 
-  <script src="../js/blog-actions.js"></script>
+  <script src="../js/project-actions.js"></script>
 </body>
 </html>

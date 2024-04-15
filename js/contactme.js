@@ -1,33 +1,57 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let queryIdCounter = localStorage.getItem('queryIdCounter') || 0;
-
-    const contactForm = document.getElementById('contactForm');
-
-    contactForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        queryIdCounter++;
-
-        const formData = {
-            id: queryIdCounter,
-            firstname: document.getElementById('firstname').value,
-            lastname: document.getElementById('lastname').value,
-            email: document.getElementById('email').value,
-            mobilenumber: document.getElementById('mobilenumber').value,
-            message: document.getElementById('message').value,
-            timestamp: new Date().toLocaleString()
-        };
-
-        const queries = JSON.parse(localStorage.getItem('queries')) || [];
-
-        queries.push(formData);
-
-        localStorage.setItem('queries', JSON.stringify(queries));
-
-        localStorage.setItem('queryIdCounter', queryIdCounter);
-
-        contactForm.reset();
-
-        alert('Message sent successfully!');
-    });
 });
+
+const createQuerry = async (firstname, lastname, email, mobile, message, review) => {
+  try {
+      const response = await fetch('http://localhost:3000/api/querries/create', {
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              firstname: firstname,
+              lastname: lastname,
+              email: email,
+              mobile: mobile,
+            message: message,
+              review: review
+          }),
+      })
+          
+
+    if (response.ok) {
+      const responseData = await response.json();
+      console.log('Message sent successfully:', responseData);
+      return responseData;
+    } else {
+      throw new Error('Failed to sent message');
+    }
+  } catch (error) {
+    console.error('Error sending message:', error);
+    throw error;
+  }
+};
+
+const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+  const mobile = document.getElementById('mobile').value;
+  const review = 'Not yet'
+
+
+    try {
+        await createQuerry(firstname, lastname, email, mobile, message, review);
+        alert('Message sent successfully!');
+        contactForm.reset();
+    } catch (error) {
+        alert('Failed to send message. Please try again.');
+        console.error('Error creating message:', error);
+    }
+})

@@ -285,7 +285,7 @@ a {
     }
 
     .side-menu li:hover {
-        background: #16307e;
+        /* background: #16307e; */
         padding: 8px 38px;
         border: 2px solid white;
     }
