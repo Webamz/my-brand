@@ -1,18 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // const commentBox = document.getElementById("comment-box");
-  // commentBox.style.display = "none";
   const urlParams = new URLSearchParams(window.location.search);
   const blogId = urlParams.get("id");
 
   // Get blog details
-  const blog = getBlogDetails(blogId);
+  getBlogDetails(blogId);
 
-  displayComments()
+  displayComments();
 
-  toggleCommentBox()
+  toggleCommentBox();
 
-  loadLikes()
-
+  loadLikes();
 });
 
 // Function to post comments
@@ -21,13 +18,16 @@ async function postComment() {
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get("id");
     console.log("BlogId: ", blogId);
-    const commentText = document.getElementById("comment-text").value.toLowerCase();
-    let userText = document.getElementById('comment-username').value
-    userText = userText.charAt(0).toUpperCase() + userText.slice(1).toLowerCase();
+    const commentText = document
+      .getElementById("comment-text")
+      .value.toLowerCase();
+    let userText = document.getElementById("comment-username").value;
+    userText =
+      userText.charAt(0).toUpperCase() + userText.slice(1).toLowerCase();
 
     console.log("Comment: ", commentText);
     const response = await fetch(
-      `http://localhost:3000/api/blogs/${blogId}/comments/create`,
+      `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/${blogId}/comments/create`,
       {
         method: "POST",
         credentials: "include",
@@ -37,16 +37,16 @@ async function postComment() {
         body: JSON.stringify({
           blogId: blogId,
           message: commentText,
-          username: userText
+          username: userText,
         }),
       }
     );
     if (response.ok) {
-      alert('Comment posted successfully')
-      toggleCommentBox()
-      displayComments()
+      alert("Comment posted successfully");
+      toggleCommentBox();
+      displayComments();
     } else {
-      throw new Error('Failed to post comment');
+      throw new Error("Failed to post comment");
     }
   } catch (error) {
     console.error("Error creating blog:", error);
@@ -56,12 +56,11 @@ async function postComment() {
   document.getElementById("comment-text").value = "";
 }
 
-
 // Function to get blog details
 async function getBlogDetails(blogId) {
   try {
     const response = await fetch(
-      `http://localhost:3000/api/blogs/find/${blogId}`
+      `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/find/${blogId}`
     );
     if (!response.ok) {
       throw new Error("Failed to fetch blog details");
@@ -69,14 +68,10 @@ async function getBlogDetails(blogId) {
     const blog = await response.json();
     document.getElementById("blog-title").textContent = blog.title;
     document.querySelector(".blog-post-img img").src = blog.image;
-    document.getElementById("blog-author").textContent = blog.author;
     document.getElementById("blog-date").textContent = new Date(
       blog.createdAt
     ).toLocaleDateString();
     document.getElementById("blog-content").textContent = blog.content;
-    document.querySelector(".likes-count").textContent = blog.likeNumber;
-    document.getElementById("comments-number").textContent =
-      blog.commentsNumber;
   } catch (error) {
     console.error("Error fetching blog details:", error.message);
     return null;
@@ -97,12 +92,13 @@ async function updateBlogDetails(blog) {
   }
 }
 
-
 async function displayComments() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
   try {
-    const response = await fetch(`http://localhost:3000/api/blogs/${blogId}/comments`);
+    const response = await fetch(
+      `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/${blogId}/comments`
+    );
     const comments = await response.json();
 
     const commentsSection = document.querySelector(".comments-section");
@@ -111,7 +107,7 @@ async function displayComments() {
     const commentCount = document.getElementById("comments-number");
     commentCount.textContent = "Comments (" + comments.length + ")";
 
-    comments.forEach(comment => {
+    comments.forEach((comment) => {
       const commentDiv = document.createElement("div");
       commentDiv.classList.add("comment");
 
@@ -119,12 +115,10 @@ async function displayComments() {
       commentHeader.classList.add("comment-header");
       commentHeader.innerHTML =
         '<span class="comment-date">' +
-        new Date(comment.createdAt).toLocaleDateString()
-        + '    '
-        +
+        new Date(comment.createdAt).toLocaleDateString() +
+        "    " +
         '<span class="comment-author">' +
-        comment.username
-        +
+        comment.username +
         "</span>";
 
       const commentBody = document.createElement("div");
@@ -135,12 +129,10 @@ async function displayComments() {
       commentDiv.appendChild(commentBody);
       commentsSection.appendChild(commentDiv);
     });
-
   } catch (error) {
     console.error("Error fetching comments:", error);
   }
 }
-
 
 function toggleCommentBox() {
   const commentBox = document.getElementById("comment-box");
@@ -155,13 +147,12 @@ function toggleCommentBox() {
   }
 }
 
-
 async function likeBlog() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/like/create`,
+      `https://my-brand-backend-tfnq.onrender.com/api/v1/like/create`,
       {
         method: "POST",
         credentials: "include",
@@ -175,7 +166,7 @@ async function likeBlog() {
     );
 
     if (response.ok) {
-      loadLikes()
+      loadLikes();
     } else {
       console.error("Failed to like blog");
     }
@@ -184,16 +175,17 @@ async function likeBlog() {
   }
 }
 
-
 async function loadLikes() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
   try {
-    const response = await fetch(`http://localhost:3000/api/like/get/${blogId}`);
-    const likes = await response.json()
+    const response = await fetch(
+      `https://my-brand-backend-tfnq.onrender.com/api/v1/like/get/${blogId}`
+    );
+    const likes = await response.json();
     if (response.ok) {
       const likesCount = document.getElementById("likes-count");
-    likesCount.textContent = "Likes (" + likes.length + ")";
+      likesCount.textContent = "Likes (" + likes.length + ")";
     } else {
       console.error("Failed to get likes: ", error);
     }

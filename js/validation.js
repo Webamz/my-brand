@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/users/register",
+          "https://my-brand-backend-tfnq.onrender.com/api/v1/users/register",
           {
             method: "POST",
             headers: {

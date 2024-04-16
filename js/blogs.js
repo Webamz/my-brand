@@ -5,7 +5,9 @@ async function loadBlogs() {
   const blogContainer = document.getElementById("blogContainer");
 
   try {
-    const response = await fetch("http://localhost:3000/api/blogs");
+    const response = await fetch(
+      "https://my-brand-backend-tfnq.onrender.com/api/v1/blogs"
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch blogs");
     }
@@ -13,10 +15,10 @@ async function loadBlogs() {
     const blogs = await response.json();
     blogs.forEach(async function (blog) {
       const responseLikes = await fetch(
-        `http://localhost:3000/api/like/get/${blog._id}`
+        `https://my-brand-backend-tfnq.onrender.com/api/v1/like/get/${blog._id}`
       );
       const responseComments = await fetch(
-        `http://localhost:3000/api/blogs/${blog._id}/comments`
+        `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/${blog._id}/comments`
       );
 
       const likes = await responseLikes.json();
@@ -36,14 +38,17 @@ async function loadBlogs() {
           <h1 class="blog-post_title">${blog.title}</h1>
           <p class="blog-post_text">${blog.description}</p>
           <div class="blog-post_icons">
-             <i class="far fa-heart like-button"></i> <span class="likes-count">${likes.length
-        }</span>
-          <i class="far fa-comment"></i> <span class="comments-count">${comments.length
-        }</span>
+             <i class="far fa-heart like-button"></i> <span class="likes-count">${
+               likes.length
+             }</span>
+          <i class="far fa-comment"></i> <span class="comments-count">${
+            comments.length
+          }</span>
         </div>            
           </div>
-          <a href="blog-details.html?id=${blog._id
-        }" class="blog-post_cta">Read More</a>
+          <a href="blog-details.html?id=${
+            blog._id
+          }" class="blog-post_cta">Read More</a>
         </div>
       `;
 

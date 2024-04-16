@@ -158,25 +158,25 @@
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", async function () {
-      const blogsResponse = await fetch("http://localhost:3000/api/blogs", {
+      const blogsResponse = await fetch("https://my-brand-backend-tfnq.onrender.com/api/v1/blogs", {
         credentials: "include",
       });
 
       const querriesResponse = await fetch(
-        "http://localhost:3000/api/querries/all",
+        "https://my-brand-backend-tfnq.onrender.com/api/v1/querries/all",
         {
           credentials: "include",
         }
       );
       const usersResponse = await fetch(
-        "http://localhost:3000/api/users/all",
+        "https://my-brand-backend-tfnq.onrender.com/api/v1/users/all",
         {
           credentials: "include",
         }
       );
 
       const projectsResponse = await fetch(
-        "http://localhost:3000/api/projects",
+        "https://my-brand-backend-tfnq.onrender.com/api/v1/projects",
         {
           credentials: "include",
         }
@@ -222,7 +222,7 @@
 
       const logout = document.getElementById("logout");
       logout.addEventListener("click", () => {
-        const response = fetch("http://localhost:3000/api/users/logout", {
+        const response = fetch("https://my-brand-backend-tfnq.onrender.com/api/v1/users/logout", {
           method: "POST",
           credentials: "include",
         });
