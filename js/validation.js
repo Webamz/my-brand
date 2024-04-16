@@ -25,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
   passwordInput.addEventListener("input", validatePassword);
   confirmPasswordInput.addEventListener("input", validateConfirmPassword);
 
+<<<<<<< HEAD
   signupForm.addEventListener("submit", async function (event) {
+=======
+  signupForm.addEventListener('submit', async function (event) {
+>>>>>>> 56acad2b3c56282db90a86da6ed403c01a1a2679
     event.preventDefault();
 
     const username = usernameInput.value;
@@ -39,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       validatePassword() &&
       validateConfirmPassword()
     ) {
+<<<<<<< HEAD
       try {
         const response = await fetch(
           "https://my-brand-backend-tfnq.onrender.com/api/v1/users/register",
@@ -71,6 +76,33 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordInput.value = "";
         confirmPasswordInput.value = "";
       }
+=======
+
+      try {
+        const response = await fetch('http//localhost:3000/api/users/register', {
+          method: 'POST',
+          headers: {
+                    'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+             "name": username,
+            "email": email,
+            "password": confirmPassword,
+            "role": "user"
+          })
+        })
+        console.log(response)
+
+        if (response.ok) {
+           alert('Registration successful!');
+        }
+        window.location.href = 'login.html';
+
+      } catch (error) {
+        console.error(error)
+      }
+
+>>>>>>> 56acad2b3c56282db90a86da6ed403c01a1a2679
     } else {
       alert("Please fill in the form correctly.");
     }
