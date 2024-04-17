@@ -57,8 +57,8 @@ async function updateQuerryDetails() {
         `https://my-brand-backend-tfnq.onrender.com/api/v1/querries/update/${querryId}`,
         {
           method: "PUT",
-          "Content-Type": "application/json",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
