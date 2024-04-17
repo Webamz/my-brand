@@ -80,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
           const responseData = await response.json();
           alert("Blog updated successfully");
           console.log("Blog updated successfully:", responseData);
+          displayBlogDetails();
+
           return responseData;
         } else {
           throw new Error("Failed to update blog");

@@ -68,6 +68,7 @@ async function updateProjectDetails() {
         const responseData = await response.json();
         alert("Project updated successfully");
         console.log("Project updated successfully:", responseData);
+        displayProjectDetails();
         return responseData;
       } else {
         throw new Error("Failed to update the project");
