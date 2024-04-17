@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {});
 
 const createProject = async (formData) => {
   try {
+    const token = localStorage.getItem("token");
+
     const response = await fetch(
       "https://my-brand-backend-tfnq.onrender.com/api/v1/projects/create",
       {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         body: formData,
-        credentials: "include",
       }
     );
 

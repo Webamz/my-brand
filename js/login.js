@@ -23,9 +23,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = await response.json();
         console.log("Data: ", data);
 
+        const { token,email,_id } = await response.json();
+                localStorage.setItem( 'email',email);
+                localStorage.setItem( "token",token);
+                localStorage.setItem( "userId",_id);
+
         alert("Login successful!");
 
-        document.cookie = `token=${data.token}; path=/; SameSite=None; Secure;`;
+        // document.cookie = `token=${data.token}; path=/; SameSite=None; Secure;`;
 
         if (data.role === "admin") {
           window.location.href = "../pages/admin.html";
