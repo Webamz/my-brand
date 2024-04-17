@@ -220,7 +220,7 @@
         const usersTable = document.getElementById("userTable");
         const querryTable = document.getElementById("querryTable");
 
-        for (let i = 0; i <= 6; i++) {
+        for (let i = 0; i < Math.min(users.length, querries.length, 7); i++) {
           // new users
           const userRow = userTable.insertRow(-1);
           const usernameCell = userRow.insertCell(0);
