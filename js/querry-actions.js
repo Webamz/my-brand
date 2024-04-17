@@ -67,15 +67,16 @@ async function updateQuerryDetails() {
       );
 
       if (response.ok) {
+        console.log('The review value: ', review)
         const responseData = await response.json();
         alert("Querry updated successfully");
         console.log("Querry updated successfully:", responseData);
         return responseData;
       } else {
-        throw new Error("Failed to update the project");
+        throw new Error("Failed to update the querry");
       }
     } catch (error) {
-      console.error("Error updating the project:", error);
+      console.error("Error updating the querry:", error);
       throw error;
     }
   }
