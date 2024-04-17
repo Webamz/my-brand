@@ -96,6 +96,7 @@ async function deleteQuerry() {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/querries/delete/${querryId}`,
         {
+          method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
           },
