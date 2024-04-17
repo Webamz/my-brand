@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("Data: ", data);
-
+        
         const { token,email,_id } = await response.json();
                 localStorage.setItem( 'email',email);
                 localStorage.setItem( "token",token);
