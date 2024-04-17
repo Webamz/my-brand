@@ -20,17 +20,17 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (response.ok) {
-        
-        const { token,email,_id } = await response.json();
+
+        const { token,email,_id, role} = await response.json();
                 localStorage.setItem( 'email',email);
                 localStorage.setItem( "token",token);
                 localStorage.setItem( "userId",_id);
 
         alert("Login successful!");
 
-        // document.cookie = `token=${data.token}; path=/; SameSite=None; Secure;`;
+        // document.cookie = `token=${token}; path=/; SameSite=None; Secure;`;
 
-        if (data.role === "admin") {
+        if (role === "admin") {
           window.location.href = "../pages/admin.html";
         } else {
           window.location.href = "../index.html";
