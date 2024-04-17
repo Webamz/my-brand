@@ -15,12 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
 async function displayQuerryDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const querryId = urlParams.get("id");
+  const token = localStorage.getItem("token");
 
   try {
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/querries/find/${querryId}`,
       {
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
 
@@ -46,6 +49,7 @@ async function updateQuerryDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const querryId = urlParams.get("id");
   const review = document.getElementById("review").value;
+  const token = localStorage.getItem("token");
 
   if (confirmed) {
     try {
@@ -54,9 +58,10 @@ async function updateQuerryDetails() {
         {
           method: "PUT",
           headers: {
+            Authorization: `Bearer ${token}`,
+
             "Content-Type": "application/json",
           },
-          credentials: "include",
           body: JSON.stringify({
             review: review,
           }),
@@ -85,13 +90,15 @@ async function deleteQuerry() {
   if (confirmed) {
     const urlParams = new URLSearchParams(window.location.search);
     const querryId = urlParams.get("id");
+    const token = localStorage.getItem("token");
 
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/querries/delete/${querryId}`,
         {
-          method: "DELETE",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 

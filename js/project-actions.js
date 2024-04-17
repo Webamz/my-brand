@@ -42,6 +42,7 @@ async function updateProjectDetails() {
   const confirmed = confirm("Are you sure you want to update this project?");
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get("id");
+  const token = localStorage.getItem("token");
 
   const formData = new FormData();
   formData.append("projectname", document.getElementById("title").value);
@@ -55,8 +56,11 @@ async function updateProjectDetails() {
         `https://my-brand-backend-tfnq.onrender.com/api/v1/projects/update/${projectId}`,
         {
           method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+
           body: formData,
-          credentials: "include",
         }
       );
 
@@ -82,13 +86,16 @@ async function deleteProject() {
   if (confirmed) {
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get("id");
+    const token = localStorage.getItem("token");
 
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/projects/delete/${projectId}`,
         {
           method: "DELETE",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 

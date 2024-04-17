@@ -88,17 +88,21 @@ async function deleteComment(commentId) {
   const confirmed = confirm("Are you sure you want to delete this blog?");
 
   if (confirmed) {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/comment/delete/${commentId}`,
         {
           method: "DELETE",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to delete blog");
+        throw new Error("Failed to delete comment");
       }
 
       alert("Blog deleted successfully!");
@@ -117,7 +121,7 @@ function deleteComments() {
   console.log("Found delete buttons:", deleteButtons);
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent default button behavior (form submission, etc.)
+      event.preventDefault();
       const commentId = this.getAttribute("data-comment-id");
       deleteComment(commentId);
     });
@@ -130,7 +134,7 @@ function deleteLikes() {
   console.log("Found delete buttons:", deleteButtons);
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent default button behavior (form submission, etc.)
+      event.preventDefault();
       const likeId = this.getAttribute("data-comment-id");
       deleteLike(likeId);
     });
@@ -140,6 +144,7 @@ function deleteLikes() {
 async function deleteLike(likeId) {
   console.log("Delete button clicked for commentId:", likeId);
   const confirmed = confirm("Are you sure you want to delete this like?");
+  const token = localStorage.getItem("token");
 
   if (confirmed) {
     try {
@@ -147,7 +152,9 @@ async function deleteLike(likeId) {
         `https://my-brand-backend-tfnq.onrender.com/api/v1/like/delete/${likeId}`,
         {
           method: "DELETE",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 

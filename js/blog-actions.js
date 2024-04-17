@@ -64,12 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (confirmed) {
       try {
+        const token = localStorage.getItem("token");
         const response = await fetch(
           `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/update/${blogId}`,
           {
             method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
             body: formData,
-            credentials: "include",
           }
         );
 
@@ -95,13 +98,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (confirmed) {
       const urlParams = new URLSearchParams(window.location.search);
       const blogId = urlParams.get("id");
+      const token = localStorage.getItem("token");
 
       try {
         const response = await fetch(
           `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/delete/${blogId}`,
           {
             method: "DELETE",
-            credentials: "include",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
 
