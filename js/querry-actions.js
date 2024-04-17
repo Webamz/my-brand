@@ -59,8 +59,6 @@ async function updateQuerryDetails() {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
-
-            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             review: review,
