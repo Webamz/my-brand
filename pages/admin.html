@@ -220,14 +220,16 @@
         const usersTable = document.getElementById("userTable");
         const querryTable = document.getElementById("querryTable");
 
-        for (let i = 0; i < Math.min(users.length, querries.length, 7); i++) {
+        for (let i = 0; i < Math.min(users.length, 7); i++) {
           // new users
           const userRow = userTable.insertRow(-1);
           const usernameCell = userRow.insertCell(0);
           const emailCell = userRow.insertCell(1);
           usernameCell.textContent = users[i].name;
           emailCell.textContent = users[i].email;
+        }
 
+        for (let i = 0; i < Math.min(querries.length, 7); i++) {
           //querries
           const queryRow = querryTable.insertRow(-1);
           const nameCell = queryRow.insertCell(0);
