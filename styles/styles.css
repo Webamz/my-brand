@@ -499,13 +499,6 @@ html {
 /* Media queries for responsiveness */
 /* Screens smaller than 768px */
 @media screen and (max-width: 800px) {
-  
-  #profile-picture {
-      width: 80%;
-      height: auto;
-      margin: 20px 0;
-    }
-
   .container {
     flex-direction: column;
     align-items: center;
@@ -551,7 +544,8 @@ html {
   #profile-picture {
     width: 80%;
     height: auto;
-    margin: 20px 0;
+    margin: 20px auto;
+    max-width: 300px;
   }
 
   .about-container {
@@ -596,10 +590,6 @@ html {
 
 /* Screens smaller than 480px */
 @media screen and (max-width: 480px) {
-  #profile-picture {
-      width: 90%;
-      margin: 20px 0;
-    }
   .introduction h2 {
     font-size: 40px;
   }
