@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {});
 const token = localStorage.getItem("token");
 
 const createBlog = async (formData) => {
+  document.getElementById("loader").style.display = "block";
+
   try {
     const response = await fetch(
       "https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/create",
@@ -17,7 +19,6 @@ const createBlog = async (formData) => {
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log("Blog created successfully:", responseData);
       return responseData;
     } else {
       throw new Error("Failed to create blog");
@@ -25,6 +26,8 @@ const createBlog = async (formData) => {
   } catch (error) {
     console.error("Error creating blog:", error);
     throw error;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 };
 

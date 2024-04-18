@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   loadBlogs();
 });
+
 async function loadBlogs() {
   const blogContainer = document.getElementById("blogContainer");
+  document.getElementById("loader").style.display = "block";
 
   try {
     const response = await fetch(
@@ -53,6 +55,7 @@ async function loadBlogs() {
       `;
 
       blogContainer.appendChild(blogPost);
+      document.getElementById("loader").style.display = "none";
     });
   } catch (error) {
     console.error("Error fetching blogs:", error.message);

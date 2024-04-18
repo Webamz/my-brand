@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function displayProjectDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const projectId = urlParams.get("id");
+  document.getElementById("loader").style.display = "block";
 
   try {
     const response = await fetch(
@@ -26,7 +27,6 @@ async function displayProjectDetails() {
     }
 
     const project = await response.json();
-    console.log("The project: ", project);
     document.getElementById("title").value = project.projectname;
     document.getElementById("description").value = project.description;
     document.getElementById("github").value = project.githubLink;
@@ -34,6 +34,8 @@ async function displayProjectDetails() {
   } catch (error) {
     console.error("Error fetching project details:", error.message);
     return null;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
@@ -51,6 +53,8 @@ async function updateProjectDetails() {
   formData.append("image", document.getElementById("image").files[0]);
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/projects/update/${projectId}`,
@@ -76,6 +80,8 @@ async function updateProjectDetails() {
     } catch (error) {
       console.error("Error updating the project:", error);
       throw error;
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }
@@ -85,6 +91,8 @@ async function deleteProject() {
   const confirmed = confirm("Are you sure you want to delete this blog?");
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get("id");
     const token = localStorage.getItem("token");
@@ -109,6 +117,8 @@ async function deleteProject() {
       window.location.href = "../pages/admin-projects.html";
     } catch (error) {
       console.error("Error deleting project:", error.message);
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }

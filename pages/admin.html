@@ -168,77 +168,90 @@
         </div>
       </div>
     </div>
+
+    <div id="loader" style="display: none">
+      <div class="spinner"></div>
+    </div>
+
     <script>
       document.addEventListener("DOMContentLoaded", async function () {
         const token = localStorage.getItem("token");
+        document.getElementById("loader").style.display = "block";
 
-        const blogsResponse = await fetch(
-          "https://my-brand-backend-tfnq.onrender.com/api/v1/blogs",
-          {
-            credentials: "include",
+        try {
+          const blogsResponse = await fetch(
+            "https://my-brand-backend-tfnq.onrender.com/api/v1/blogs",
+            {
+              credentials: "include",
+            }
+          );
+
+          const querriesResponse = await fetch(
+            "https://my-brand-backend-tfnq.onrender.com/api/v1/querries/all",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const usersResponse = await fetch(
+            "https://my-brand-backend-tfnq.onrender.com/api/v1/users/all",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const projectsResponse = await fetch(
+            "https://my-brand-backend-tfnq.onrender.com/api/v1/projects",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const users = await usersResponse.json();
+          const blogs = await blogsResponse.json();
+          const querries = await querriesResponse.json();
+          const projects = await projectsResponse.json();
+
+          console.log("The users: ", users);
+
+          document.getElementById("blogsNumber").textContent = blogs.length;
+          document.getElementById("querryNumber").textContent = querries.length;
+          document.getElementById("userNumber").textContent = users.length;
+          document.getElementById("projectsNumber").textContent =
+            projects.length;
+
+          const usersTable = document.getElementById("userTable");
+          const querryTable = document.getElementById("querryTable");
+
+          for (let i = 0; i < Math.min(users.length, 7); i++) {
+            // new users
+            const userRow = userTable.insertRow(-1);
+            const usernameCell = userRow.insertCell(0);
+            const emailCell = userRow.insertCell(1);
+            usernameCell.textContent = users[i].name;
+            emailCell.textContent = users[i].email;
           }
-        );
 
-        const querriesResponse = await fetch(
-          "https://my-brand-backend-tfnq.onrender.com/api/v1/querries/all",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+          for (let i = 0; i < Math.min(querries.length, 7); i++) {
+            //querries
+            const queryRow = querryTable.insertRow(-1);
+            const nameCell = queryRow.insertCell(0);
+            const email = queryRow.insertCell(1);
+            const optionCell = queryRow.insertCell(2);
+
+            nameCell.textContent = querries[i].firstname;
+            email.textContent = querries[i].email;
+            optionCell.textContent = querries[i].message;
           }
-        );
-        const usersResponse = await fetch(
-          "https://my-brand-backend-tfnq.onrender.com/api/v1/users/all",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const projectsResponse = await fetch(
-          "https://my-brand-backend-tfnq.onrender.com/api/v1/projects",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const users = await usersResponse.json();
-        const blogs = await blogsResponse.json();
-        const querries = await querriesResponse.json();
-        const projects = await projectsResponse.json();
-
-        console.log("The users: ", users);
-
-        document.getElementById("blogsNumber").textContent = blogs.length;
-        document.getElementById("querryNumber").textContent = querries.length;
-        document.getElementById("userNumber").textContent = users.length;
-        document.getElementById("projectsNumber").textContent = projects.length;
-
-        const usersTable = document.getElementById("userTable");
-        const querryTable = document.getElementById("querryTable");
-
-        for (let i = 0; i < Math.min(users.length, 7); i++) {
-          // new users
-          const userRow = userTable.insertRow(-1);
-          const usernameCell = userRow.insertCell(0);
-          const emailCell = userRow.insertCell(1);
-          usernameCell.textContent = users[i].name;
-          emailCell.textContent = users[i].email;
-        }
-
-        for (let i = 0; i < Math.min(querries.length, 7); i++) {
-          //querries
-          const queryRow = querryTable.insertRow(-1);
-          const nameCell = queryRow.insertCell(0);
-          const email = queryRow.insertCell(1);
-          const optionCell = queryRow.insertCell(2);
-
-          nameCell.textContent = querries[i].firstname;
-          email.textContent = querries[i].email;
-          optionCell.textContent = querries[i].message;
+        } catch (error) {
+          console.error(error);
+        } finally {
+          document.getElementById("loader").style.display = "none";
         }
       });
 

@@ -9,6 +9,8 @@ const createQuerry = async (
   review
 ) => {
   try {
+    document.getElementById("loader").style.display = "block";
+
     const response = await fetch(
       "https://my-brand-backend-tfnq.onrender.com/api/v1/querries/create",
       {
@@ -29,7 +31,6 @@ const createQuerry = async (
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log("Message sent successfully:", responseData);
       return responseData;
     } else {
       throw new Error("Failed to sent message");
@@ -37,6 +38,8 @@ const createQuerry = async (
   } catch (error) {
     console.error("Error sending message:", error);
     throw error;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 };
 

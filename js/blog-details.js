@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const blogId = urlParams.get("id");
 
-  // Get blog details
   getBlogDetails(blogId);
 
   displayComments();
@@ -15,9 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to post comments
 async function postComment() {
   try {
+    document.getElementById("loader").style.display = "block";
+
     const urlParams = new URLSearchParams(window.location.search);
     const blogId = urlParams.get("id");
-    console.log("BlogId: ", blogId);
     const commentText = document
       .getElementById("comment-text")
       .value.toLowerCase();
@@ -25,7 +25,6 @@ async function postComment() {
     userText =
       userText.charAt(0).toUpperCase() + userText.slice(1).toLowerCase();
 
-    console.log("Comment: ", commentText);
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/${blogId}/comments/create`,
       {
@@ -51,6 +50,8 @@ async function postComment() {
   } catch (error) {
     console.error("Error creating blog:", error);
     throw error;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 
   document.getElementById("comment-text").value = "";
@@ -59,6 +60,8 @@ async function postComment() {
 // Function to get blog details
 async function getBlogDetails(blogId) {
   try {
+    document.getElementById("loader").style.display = "block";
+
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/find/${blogId}`
     );
@@ -75,23 +78,12 @@ async function getBlogDetails(blogId) {
   } catch (error) {
     console.error("Error fetching blog details:", error.message);
     return null;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
-// Function to update blog details in the DOM
-async function updateBlogDetails(blog) {
-  if (blog) {
-    document.getElementById("blog-title").textContent = blog.title;
-    document.getElementById("blog-author").textContent = blog.author;
-    document.getElementById("blog-date").textContent = blog.timecreated;
-    document.getElementById("blog-content").textContent = blog.content;
-
-    const blogImage = document.querySelector(".blog-post-img img");
-    blogImage.src = blog.image;
-    blogImage.alt = "Blog Post Image";
-  }
-}
-
+// Function to display comments
 async function displayComments() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
@@ -134,6 +126,7 @@ async function displayComments() {
   }
 }
 
+// Function for the comment bx
 function toggleCommentBox() {
   const commentBox = document.getElementById("comment-box");
   const addCommentBtn = document.getElementById("add-comment-btn");
@@ -147,10 +140,13 @@ function toggleCommentBox() {
   }
 }
 
+// Function to like a blog
 async function likeBlog() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
   try {
+    document.getElementById("loader").style.display = "block";
+
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/like/create`,
       {
@@ -172,13 +168,18 @@ async function likeBlog() {
     }
   } catch (error) {
     console.error(error);
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
+// Function to load likes
 async function loadLikes() {
   const blogId = new URLSearchParams(window.location.search).get("id");
 
   try {
+    document.getElementById("loader").style.display = "block";
+
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/like/get/${blogId}`
     );
@@ -191,5 +192,7 @@ async function loadLikes() {
     }
   } catch (error) {
     console.error(error);
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }

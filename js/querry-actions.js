@@ -16,6 +16,7 @@ async function displayQuerryDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const querryId = urlParams.get("id");
   const token = localStorage.getItem("token");
+  document.getElementById("loader").style.display = "block";
 
   try {
     const response = await fetch(
@@ -32,7 +33,6 @@ async function displayQuerryDetails() {
     }
 
     const querry = await response.json();
-    console.log("The querry: ", querry);
     document.getElementById("name").value = querry.firstname;
     document.getElementById("email").value = querry.email;
     document.getElementById("message").textContent = querry.message;
@@ -40,6 +40,8 @@ async function displayQuerryDetails() {
   } catch (error) {
     console.error("Error fetching details:", error.message);
     return null;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
@@ -52,6 +54,8 @@ async function updateQuerryDetails() {
   const token = localStorage.getItem("token");
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/querries/update/${querryId}`,
@@ -68,7 +72,6 @@ async function updateQuerryDetails() {
       );
 
       if (response.ok) {
-        console.log('The review value: ', review)
         const responseData = await response.json();
         alert("Querry updated successfully");
         console.log("Querry updated successfully:", responseData);
@@ -79,6 +82,8 @@ async function updateQuerryDetails() {
     } catch (error) {
       console.error("Error updating the querry:", error);
       throw error;
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }
@@ -88,6 +93,8 @@ async function deleteQuerry() {
   const confirmed = confirm("Are you sure you want to delete this querry?");
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     const urlParams = new URLSearchParams(window.location.search);
     const querryId = urlParams.get("id");
     const token = localStorage.getItem("token");
@@ -112,6 +119,8 @@ async function deleteQuerry() {
       window.location.href = "../pages/admin-queries.html";
     } catch (error) {
       console.error("Error deleting project:", error.message);
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }

@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("password").value;
 
     try {
+      document.getElementById("loader").style.display = "block";
+
       const response = await fetch(
         "https://my-brand-backend-tfnq.onrender.com/api/v1/users/login",
         {
@@ -20,13 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       if (response.ok) {
+        const { token, email, _id, role } = await response.json();
+        localStorage.setItem("email", email);
+        localStorage.setItem("token", token);
+        localStorage.setItem("userId", _id);
 
-        const { token,email,_id, role} = await response.json();
-                localStorage.setItem( 'email',email);
-                localStorage.setItem( "token",token);
-                localStorage.setItem( "userId",_id);
-
-        alert("Login successful!");
+        // alert("Login successful!");
 
         // document.cookie = `token=${token}; path=/; SameSite=None; Secure;`;
 
@@ -42,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Login error:", error.message);
       alert(error.message);
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   });
 });

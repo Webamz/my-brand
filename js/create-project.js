@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {});
 
 const createProject = async (formData) => {
+  document.getElementById("loader").style.display = "block";
+
   try {
     const token = localStorage.getItem("token");
 
@@ -17,7 +19,6 @@ const createProject = async (formData) => {
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log("Project created successfully:", responseData);
       return responseData;
     } else {
       throw new Error("Failed to create project");
@@ -25,6 +26,8 @@ const createProject = async (formData) => {
   } catch (error) {
     console.error("Error creating project:", error);
     throw error;
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 };
 

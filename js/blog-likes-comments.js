@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function displayComments() {
   const blogId = new URLSearchParams(window.location.search).get("id");
+  document.getElementById("loader").style.display = "block";
+
   try {
     const response = await fetch(
       `https://my-brand-backend-tfnq.onrender.com/api/v1/blogs/${blogId}/comments`
@@ -53,11 +55,14 @@ async function displayComments() {
     deleteComments();
   } catch (error) {
     console.error("Error fetching comments:", error);
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
 async function loadLikes() {
   const blogId = new URLSearchParams(window.location.search).get("id");
+  document.getElementById("loader").style.display = "block";
 
   try {
     const response = await fetch(
@@ -80,6 +85,8 @@ async function loadLikes() {
     deleteLikes();
   } catch (error) {
     console.error(error);
+  } finally {
+    document.getElementById("loader").style.display = "none";
   }
 }
 
@@ -88,6 +95,8 @@ async function deleteComment(commentId) {
   const confirmed = confirm("Are you sure you want to delete this blog?");
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     const token = localStorage.getItem("token");
 
     try {
@@ -111,14 +120,14 @@ async function deleteComment(commentId) {
       //   window.location.href = '../pages/admin-blogs.html';
     } catch (error) {
       console.error("Error deleting blog:", error.message);
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }
 
 function deleteComments() {
-  console.log("Attempting to find delete buttons...");
   const deleteButtons = document.querySelectorAll(".deleteCommentBtn");
-  console.log("Found delete buttons:", deleteButtons);
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -129,9 +138,7 @@ function deleteComments() {
 }
 
 function deleteLikes() {
-  console.log("Attempting to find delete like buttons...");
   const deleteButtons = document.querySelectorAll(".deleteLikeBtn");
-  console.log("Found delete buttons:", deleteButtons);
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -142,11 +149,12 @@ function deleteLikes() {
 }
 
 async function deleteLike(likeId) {
-  console.log("Delete button clicked for commentId:", likeId);
   const confirmed = confirm("Are you sure you want to delete this like?");
   const token = localStorage.getItem("token");
 
   if (confirmed) {
+    document.getElementById("loader").style.display = "block";
+
     try {
       const response = await fetch(
         `https://my-brand-backend-tfnq.onrender.com/api/v1/like/delete/${likeId}`,
@@ -166,6 +174,8 @@ async function deleteLike(likeId) {
       loadLikes();
     } catch (error) {
       console.error("Error deleting like:", error.message);
+    } finally {
+      document.getElementById("loader").style.display = "none";
     }
   }
 }

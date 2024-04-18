@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
       validateConfirmPassword()
     ) {
       try {
+        document.getElementById("loader").style.display = "block";
+
         const response = await fetch(
           "https://my-brand-backend-tfnq.onrender.com/api/v1/users/register",
           {
@@ -70,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         emailInput.value = "";
         passwordInput.value = "";
         confirmPasswordInput.value = "";
+      } finally {
+        document.getElementById("loader").style.display = "none";
       }
     } else {
       alert("Please fill in the form correctly.");

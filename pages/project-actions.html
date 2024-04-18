@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit/Delete Project</title>
-  <link rel="stylesheet" href="../styles/blog-actions.css">
-</head>
-<body>
-  
-   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <a href="../pages/admin-projects.html"><h1>MyBrand</h1></a>
-    </div>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit/Delete Project</title>
+    <link rel="stylesheet" href="../styles/blog-actions.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="../pages/admin-projects.html"><h1>MyBrand</h1></a>
+      </div>
+    </nav>
 
-
-  <div class="container">
-    <div class="side-panel">
-      <img src="" alt="Project Image" class="blog-image" id="imagePreview">
+    <div class="container">
+      <div class="side-panel">
+        <img src="" alt="Project Image" class="blog-image" id="imagePreview" />
+      </div>
+      <div class="form">
+        <h2>Edit/Delete Project</h2>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" />
+        </div>
+        <div class="form-group">
+          <label for="author">Description</label>
+          <input type="text" id="description" rows="4" />
+        </div>
+        <div class="form-group">
+          <label for="github">Github Link</label>
+          <input type="text" id="github" />
+        </div>
+        <div class="form-group">
+          <label for="image">Update Image</label>
+          <input type="file" id="image" />
+        </div>
+        <div class="btn-group">
+          <button class="btn update-btn" id="updateBtn">Update</button>
+          <button class="btn delete-btn" id="deleteBtn">Delete</button>
+        </div>
+      </div>
     </div>
-    <div class="form">
-      <h2>Edit/Delete Project</h2>
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" id="title">
-      </div>
-      <div class="form-group">
-        <label for="author">Description</label>
-        <input type="text" id="description" rows="4">
-      </div>
-      <div class="form-group">
-        <label for="github">Github Link</label>
-        <input type="text" id="github" >
-      </div>
-      <div class="form-group">
-        <label for="image">Update Image</label>
-        <input type="file" id="image">
-      </div>
-      <div class="btn-group">
-        <button class="btn update-btn" id="updateBtn">Update</button>
-        <button class="btn delete-btn" id="deleteBtn">Delete</button>
-      </div>
-    </div>
-  </div>
 
-  <script src="../js/project-actions.js"></script>
-</body>
+    <div id="loader" style="display: none">
+      <div class="spinner"></div>
+    </div>
+
+    <script src="../js/project-actions.js"></script>
+  </body>
 </html>
